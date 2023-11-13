@@ -11,29 +11,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:text="@string/create"
+        android:text="@string/loginMessage"
         android:textColor="@color/white"
-        android:textSize="40sp"
+        android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.082" />
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:text="Name"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.28"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_first"
-        app:layout_constraintVertical_bias="0.084" />
 
     <TextView
         android:id="@+id/email"
@@ -47,8 +32,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.277"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText"
-        app:layout_constraintVertical_bias="0.049" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_first"
+        app:layout_constraintVertical_bias="0.114" />
 
     <TextView
         android:id="@+id/pw"
@@ -66,25 +51,25 @@
         app:layout_constraintVertical_bias="0.053" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/sign_up_page"
+        android:id="@+id/studentButton"
         android:layout_width="255dp"
         android:layout_height="48dp"
         android:layout_marginBottom="12dp"
         android:background="#A4A5F5"
         android:backgroundTint="#A4A5F5"
-        android:text="@string/student"
-        app:layout_constraintBottom_toTopOf="@+id/login"
+        android:text="@string/studentLogin"
+        app:layout_constraintBottom_toTopOf="@+id/adminButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/login"
+        android:id="@+id/adminButton"
         android:layout_width="255dp"
         android:layout_height="48dp"
         android:layout_marginBottom="40dp"
         android:background="#A4A5F5"
         android:backgroundTint="#A4A5F5"
-        android:text="@string/admin"
+        android:text="@string/adminLogin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -98,7 +83,7 @@
         android:ems="10"
         android:inputType="textPassword"
         android:text="@string/password"
-        app:layout_constraintBottom_toTopOf="@+id/sign_up_page"
+        app:layout_constraintBottom_toTopOf="@+id/studentButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,20 +104,5 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
-
-    <EditText
-        android:id="@+id/editTextText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="#A4A5F5"
-        android:backgroundTint="#A4A5F5"
-        android:ems="10"
-        android:inputType="text"
-        android:text="@string/name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

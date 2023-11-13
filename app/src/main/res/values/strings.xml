@@ -3,7 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="welcome">
@@ -15,11 +15,15 @@
     </string>
 
     <string name="login">
-        Login
+        Log in
     </string>
 
-    <string name="create">
+    <string name="createMessage">
         Create an Account
+    </string>
+
+    <string name="loginMessage">
+        Log In
     </string>
 
     <string name="student">
@@ -28,6 +32,14 @@
 
     <string name="admin">
         Create as Admin
+    </string>
+
+    <string name="studentLogin">
+        Log In as Student
+    </string>
+
+    <string name="adminLogin">
+        Log In as Admin
     </string>
 
     <string name="name">
