@@ -1,16 +1,16 @@
-package com.example.b07project.ui.home;
+package com.example.b07project.ui.complaints;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class ComplaintsViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public ComplaintsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is Complaints fragment");
     }
 
     public LiveData<String> getText() {

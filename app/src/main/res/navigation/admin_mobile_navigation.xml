@@ -2,12 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
+    android:id="@+id/admin_mobile_navigation"
     app:startDestination="@+id/navigation_notifications">
+
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.b07project.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:label="Announcements"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
@@ -22,9 +23,4 @@
         android:label="Complaints"
         tools:layout="@layout/fragment_complaints" />
 
-    <fragment
-        android:id="@+id/navigation_post"
-        android:name="com.example.b07project.ui.post.PostFragment"
-        android:label="POSt"
-        tools:layout="@layout/fragment_post" />
 </navigation>
