@@ -25,8 +25,9 @@ public class WelcomeActivity extends AppCompatActivity {
         goLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goLogin.setVisibility(View.GONE);
+                /*goLogin.setVisibility(View.GONE);
                 goSignup.setVisibility(View.GONE);
+                 */
                 Fragment loginFragment = new LoginFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.welcomeContainer, loginFragment).commit();
@@ -35,8 +36,10 @@ public class WelcomeActivity extends AppCompatActivity {
         goSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 goLogin.setVisibility(View.GONE);
                 goSignup.setVisibility(View.GONE);
+                 */
                 Fragment signupFragment = new SignUpFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.welcomeContainer, signupFragment).commit();
