@@ -1,16 +1,23 @@
-package com.example.b07project.ui.signup;
+package com.example.b07project.login;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.example.b07project.R;
 
-public class SignUpFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link LoginFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class LoginFragment extends Fragment {
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,7 +32,7 @@ public class SignUpFragment extends Fragment {
         view.findViewById(R.id.studentButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
             }
         });
 
@@ -36,6 +43,5 @@ public class SignUpFragment extends Fragment {
             }
         });
     }
-
 
 }
