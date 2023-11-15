@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/admin_mobile_navigation"
-    app:startDestination="@+id/navigation_notifications">
+    app:startDestination="@+id/navigation_admin_announcements">
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.b07project.ui.notifications.NotificationsFragment"
+        android:id="@+id/navigation_admin_announcements"
+        android:name="com.example.b07project.ui.adminannouncements.AdminAnnouncementsFragment"
         android:label="Announcements"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_admin_announcements" />
 
     <fragment
         android:id="@+id/navigation_events"
