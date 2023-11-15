@@ -6,6 +6,7 @@
     tools:context=".ui.post.PostFragment">
 
     <TextView
+        android:id="@+id/text_post"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Will you make POSt?" />
