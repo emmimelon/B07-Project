@@ -2,6 +2,7 @@ package com.example.b07project.ui.post;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,28 +12,52 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.b07project.MainActivity;
 import com.example.b07project.R;
+import com.example.b07project.databinding.FragmentNotificationsBinding;
+import com.example.b07project.databinding.FragmentPostBinding;
+import com.example.b07project.ui.notifications.NotificationsViewModel;
 
-public class PostFragment extends Fragment {
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
-    private PostViewModel mViewModel;
+public class PostFragment extends Fragment{
 
-    public static PostFragment newInstance() {
-        return new PostFragment();
+    private FragmentPostBinding binding;
+    AutoCompleteTextView autoCompleteTextView;
+    ArrayAdapter<String> arrayAdapter;
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+
+        binding = FragmentPostBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+        String[] postCategories = {"Computer Science Major", "Computer Science Specialist",
+                "Mathematics Major", "Mathematics Specialist", "Statistics Major", "Statistics Specialist"};
+        autoCompleteTextView = root.findViewById(R.id.autoPostChoice);
+        arrayAdapter = new ArrayAdapter<String>(getActivity() ,
+                R.layout.post_choices, postCategories);
+        autoCompleteTextView.setAdapter(arrayAdapter);
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String items = (String) parent.getItemAtPosition(position);
+
+            }
+        });
+
+        return root;
     }
-
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_post, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(PostViewModel.class);
-        // TODO: Use the ViewModel
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
 }
