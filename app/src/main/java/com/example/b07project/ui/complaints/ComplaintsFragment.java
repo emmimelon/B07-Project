@@ -31,14 +31,9 @@ public class ComplaintsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ComplaintsViewModel complaintsViewModel =
-                new ViewModelProvider(this).get(ComplaintsViewModel.class);
 
         binding = FragmentComplaintsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        final TextView textView = binding.textComplaints;
-        complaintsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
         inputComplaintTitle = root.findViewById(R.id.editTextComplaintTitle);

@@ -7,12 +7,12 @@
 
     <item
         android:id="@+id/navigation_events"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/ic_event_black_24dp"
         android:title="Events" />
 
     <item
         android:id="@+id/navigation_complaints"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_complaint_black"
         android:title="Complaints" />
 
 </menu>
