@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.b07project.R;
 import com.example.b07project.databinding.FragmentEventsBinding;
 
 public class EventsFragment extends Fragment {
@@ -26,6 +27,18 @@ public class EventsFragment extends Fragment {
         // final TextView textView = binding.textEvents;
         // eventsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // set up the click listener for the schedule_event_button
+        binding.scheduleEventButton.setOnClickListener(v -> navigateToScheduleEventFragment());
+    }
+
+    private void navigateToScheduleEventFragment() {
+        // perform the navigation action
     }
 
     @Override

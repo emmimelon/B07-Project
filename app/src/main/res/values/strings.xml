@@ -54,4 +54,6 @@
         Enter your password.
     </string>
     <string name="title_activity_admin">AdminActivity</string>
+    <string name="events_text">Events</string>
+    <string name="schedule_event_text">Schedule an Event</string>
 </resources>
