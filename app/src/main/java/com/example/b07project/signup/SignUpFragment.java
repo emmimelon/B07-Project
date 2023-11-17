@@ -28,6 +28,7 @@ public class SignUpFragment extends Fragment {
     Button createStudentButton;
     View root;
     boolean isFound;
+    boolean isStudent;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -52,7 +53,16 @@ public class SignUpFragment extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         isFound = snapshot.exists();
-                        setOutputText();
+                        if(isFound)
+                        {
+                            isStudent = snapshot.child("Type").getValue().equals("Student");
+                            if(isStudent) {
+                                setOutputTextStudent();
+                            }
+                            else {
+                                setOutputTextAdmin();
+                            }
+                        }
                     }
 
                     @Override
@@ -64,18 +74,16 @@ public class SignUpFragment extends Fragment {
         });
 
         return root;
-        }
+    }
 
-    private void setOutputText()
+    private void setOutputTextStudent()
     {
         TextView output = (TextView) root.findViewById(R.id.output);
-        if(isFound)
-        {
-            output.setText("Found it!");
-        }
-        else
-        {
-            output.setText("Didn't find it!");
-        }
+        output.setText( "User is already a student");
+    }
+    private void setOutputTextAdmin(String name)
+    {
+        TextView output = (TextView) root.findViewById(R.id.output);
+        output.setText("User is already a admin");
     }
 }

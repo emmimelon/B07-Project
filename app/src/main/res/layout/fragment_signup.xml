@@ -135,6 +135,7 @@
 
     <TextView
         android:id="@+id/output"
+        android:textColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="38dp"
         app:layout_constraintBottom_toBottomOf="parent"
