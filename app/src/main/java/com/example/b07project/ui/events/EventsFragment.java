@@ -13,6 +13,9 @@ import com.example.b07project.databinding.FragmentEventsBinding;
 
 public class EventsFragment extends Fragment {
 
+    String eventName;
+    String eventDate;
+    String eventLocation;
     private FragmentEventsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
