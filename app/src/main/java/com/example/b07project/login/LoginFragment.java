@@ -63,10 +63,11 @@ public class LoginFragment extends Fragment {
                         {
                             correctPassword = snapshot.child("Password").getValue().equals(inputPassword.getText().toString());
                             correctType = snapshot.child("Type").getValue().equals("Student");
+
                             if(correctPassword && correctType) {
-                                Intent in = new Intent(getActivity(), MainActivity.class);
-                                in.putExtra("message2", "Successfully Logged In As Student2");
-                                startActivity(in);
+                                Intent in2 = new Intent(getActivity(), MainActivity.class);
+                                in2.putExtra("message2", "Successfully Logged In As Student");
+                                startActivity(in2);
                             }
                             else {
                                 errorMessage();
@@ -125,12 +126,26 @@ public class LoginFragment extends Fragment {
 
     private void setOutputText()
     {
-        TextView output = (TextView) root.findViewById(R.id.output);
+        TextView output = (TextView) root.findViewById(R.id.output2);
         output.setText( "User not found");
     }
     private void errorMessage()
     {
-        TextView output = (TextView) root.findViewById(R.id.output);
+        TextView output = (TextView) root.findViewById(R.id.output2);
         output.setText( "Wrong password or wrong type");
+    }
+    private void setOutputTextTest()
+    {
+        TextView output = (TextView) root.findViewById(R.id.output2);
+        if(correctPassword)
+        {
+            output.setText("Found it!");
+        }
+        else
+        {
+            output.setText("Didn't find it!");
+        }
+
+
     }
 }
