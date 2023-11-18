@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.082" />
 
     <TextView
-        android:id="@+id/email"
+        android:id="@+id/utoridlogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.113" />
 
     <TextView
-        android:id="@+id/pw"
+        android:id="@+id/pwlogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
@@ -51,19 +51,19 @@
         app:layout_constraintVertical_bias="0.053" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/studentButton"
+        android:id="@+id/loginStudentButton"
         android:layout_width="255dp"
         android:layout_height="48dp"
         android:layout_marginBottom="12dp"
         android:background="#A4A5F5"
         android:backgroundTint="#A4A5F5"
         android:text="@string/studentLogin"
-        app:layout_constraintBottom_toTopOf="@+id/adminButton"
+        app:layout_constraintBottom_toTopOf="@+id/loginAdminButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/adminButton"
+        android:id="@+id/loginAdminButton"
         android:layout_width="255dp"
         android:layout_height="48dp"
         android:layout_marginBottom="40dp"
@@ -82,11 +82,11 @@
         android:background="#A4A5F5"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/studentButton"
+        app:layout_constraintBottom_toTopOf="@+id/loginStudentButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pw"
+        app:layout_constraintTop_toBottomOf="@+id/pwlogin"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
@@ -101,6 +101,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/utoridlogin" />
     />
 </androidx.constraintlayout.widget.ConstraintLayout>

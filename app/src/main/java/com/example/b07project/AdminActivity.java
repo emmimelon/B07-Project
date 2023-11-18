@@ -1,6 +1,7 @@
 package com.example.b07project;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -32,6 +33,13 @@ public class AdminActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_admin);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.adminNavView, navController);
+
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null){
+            bundle.getString("message3");
+            Toast.makeText(getApplicationContext(), bundle.getString("message3"),
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

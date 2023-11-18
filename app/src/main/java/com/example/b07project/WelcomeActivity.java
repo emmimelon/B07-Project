@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.b07project.login.LoginFragment;
 import com.example.b07project.signup.SignUpFragment;
@@ -45,5 +46,12 @@ public class WelcomeActivity extends AppCompatActivity {
                 fragmentTransaction.replace(R.id.welcomeContainer, signupFragment).commit();
             }
         });
+
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null){
+            bundle.getString("message1");
+            Toast.makeText(getApplicationContext(), bundle.getString("message1"),
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }
