@@ -81,7 +81,7 @@ public class SignUpFragment extends Fragment {
         TextView output = (TextView) root.findViewById(R.id.output);
         output.setText( "User is already a student");
     }
-    private void setOutputTextAdmin(String name)
+    private void setOutputTextAdmin()
     {
         TextView output = (TextView) root.findViewById(R.id.output);
         output.setText("User is already a admin");
