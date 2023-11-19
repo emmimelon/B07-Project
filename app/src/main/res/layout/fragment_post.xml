@@ -1,26 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".ui.post.PostFragment">
 
+    <nl.dionsegijn.konfetti.xml.KonfettiView
+        android:id="@+id/konfettiView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/text_post"
         android:layout_width="match_parent"
         android:layout_height="42dp"
-        android:text="Check your POSt Qualifications!"
-        android:textColor="#000000"
-        android:textSize="24sp" />
+        android:fontFamily="sans-serif-black"
+        android:paddingLeft="12dp"
+        android:text="Check if you qualify for POSt!"
+        android:textColor="@color/uoftBlue"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="@+id/konfettiView"
+        tools:layout_editor_absoluteX="16dp" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="Select your desired program"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/text_post"
+        tools:layout_editor_absoluteX="16dp">
 
         <AutoCompleteTextView
             android:id="@+id/autoPostChoice"
@@ -29,4 +45,117 @@
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/selectGPA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        <TextView
+            android:id="@+id/courseCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:paddingLeft="12dp"
+            android:text="Course: "
+            android:textColor="#000000"
+            android:textSize="20sp">
+        </TextView>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="Select your GPA">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoGPAChoice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/postSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+        <TextView
+            android:id="@+id/madePOSt"
+            android:layout_width="328dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="You will make POSt!"
+            android:textColor="@color/uoftTeal"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toTopOf="@+id/emojiPOSt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/selectGPA"></TextView>
+
+        <ImageView
+            android:id="@+id/emojiPOSt"
+            android:layout_width="108dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:scaleType="center"
+            android:scaleX="5"
+            android:scaleY="5"
+            android:src="@drawable/veryhappy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/madePOSt">
+
+        </ImageView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/postFail"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+        <TextView
+            android:id="@+id/failedPOSt"
+            android:layout_width="328dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="You do not qualify for POSt."
+            android:textColor="@color/uoftTeal"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/sadEmojiPOSt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/selectGPA"></TextView>
+
+        <ImageView
+            android:id="@+id/sadEmojiPOSt"
+            android:layout_width="108dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:scaleType="center"
+            android:scaleX="5"
+            android:scaleY="5"
+            android:src="@drawable/bigsad"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/failedPOSt">
+
+        </ImageView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

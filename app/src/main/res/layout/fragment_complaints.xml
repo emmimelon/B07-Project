@@ -28,7 +28,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-black"
         android:text="Have a Complaint? "
-        android:textColor="#03A9F4"
+        android:textColor="@color/uoftBlue"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,6 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textColor="@color/uoftBlueVariant"
         android:text="Oh no! Please let us know how we can improve."
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_complaint_title" />
