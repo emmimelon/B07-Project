@@ -40,7 +40,8 @@ public class LoginFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = FragmentLoginBinding.inflate(inflater, container, false);;
+        binding = FragmentLoginBinding.inflate(inflater, container, false);
+        ;
         root = binding.getRoot();
 
         // final TextView textView = binding.
@@ -59,21 +60,18 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         isFound = snapshot.exists();
-                        if(isFound)
-                        {
+                        if (isFound) {
                             correctPassword = snapshot.child("Password").getValue().equals(inputPassword.getText().toString());
                             correctType = snapshot.child("Type").getValue().equals("Student");
 
-                            if(correctPassword && correctType) {
+                            if (correctPassword && correctType) {
                                 Intent in2 = new Intent(getActivity(), MainActivity.class);
                                 in2.putExtra("message2", "Successfully Logged In As Student");
                                 startActivity(in2);
-                            }
-                            else {
+                            } else {
                                 errorMessage();
                             }
-                        }
-                        else {
+                        } else {
                             setOutputText();
                         }
                     }
@@ -95,20 +93,17 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         isFound = snapshot.exists();
-                        if(isFound)
-                        {
+                        if (isFound) {
                             correctPassword = snapshot.child("Password").getValue().equals(inputPassword.getText().toString());
                             correctType = snapshot.child("Type").getValue().equals("Admin");
-                            if(correctPassword && correctType) {
+                            if (correctPassword && correctType) {
                                 Intent in = new Intent(getActivity(), AdminActivity.class);
                                 in.putExtra("message3", "Successfully Logged In As Admin3");
                                 startActivity(in);
-                            }
-                            else {
+                            } else {
                                 errorMessage();
                             }
-                        }
-                        else {
+                        } else {
                             setOutputText();
                         }
                     }
@@ -124,28 +119,13 @@ public class LoginFragment extends Fragment {
         return root;
     }
 
-    private void setOutputText()
-    {
+    private void setOutputText() {
         TextView output = (TextView) root.findViewById(R.id.output2);
-        output.setText( "User not found");
+        output.setText("User not found");
     }
-    private void errorMessage()
-    {
-        TextView output = (TextView) root.findViewById(R.id.output2);
-        output.setText( "Wrong password or wrong type");
-    }
-    private void setOutputTextTest()
-    {
-        TextView output = (TextView) root.findViewById(R.id.output2);
-        if(correctPassword)
-        {
-            output.setText("Found it!");
-        }
-        else
-        {
-            output.setText("Didn't find it!");
-        }
 
-
+    private void errorMessage() {
+        TextView output = (TextView) root.findViewById(R.id.output2);
+        output.setText("Wrong password or wrong type");
     }
 }
