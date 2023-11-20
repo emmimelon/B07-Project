@@ -32,6 +32,8 @@ public class AdminAnnouncementsFragment extends Fragment {
     private FirebaseDatabase firebaseDatabase;
     EditText inputAnnouncementsTitle, inputAnnouncementDescription;
     private String utorid;
+
+    private Toast toast;
     Button btnSubmitAnnouncement;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -52,7 +54,7 @@ public class AdminAnnouncementsFragment extends Fragment {
             @Override
                     public void onClick(View v) {
                 if (inputAnnouncementsTitle.getText().toString().equals("")) {
-                    Toast toast = Toast.makeText(getActivity(), "Please enter a title", Toast.LENGTH_LONG);
+                    toast = Toast.makeText(getActivity(), "Please enter a title", Toast.LENGTH_LONG);
                     toast.show();
                 } else {
                     ref = firebaseDatabase.getReference("Announcements").child(inputAnnouncementsTitle.getText().toString());
@@ -66,7 +68,10 @@ public class AdminAnnouncementsFragment extends Fragment {
                         public void onCancelled(@NonNull DatabaseError error) {
 
                         }
+
                     });
+                    toast = Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
             }
         });
