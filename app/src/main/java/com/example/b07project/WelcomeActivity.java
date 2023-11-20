@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.b07project.R;
 import com.example.b07project.login.LoginFragment;
 import com.example.b07project.signup.SignUpFragment;
 
