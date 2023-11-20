@@ -134,7 +134,34 @@ public class PostFragment extends Fragment{
                             }
                             if (j != 0){
                                 avgGPA = avgGPA/j;
-                                if (avgGPA >= thresholds[position]){
+                                int count = 0;
+                                boolean extracheck = true;
+                                switch(items){
+                                    case "Computer Science Major/Specialist":
+                                        count = 0;
+                                        if (gpaAcrossCourses[0] < 1.7) count++;
+                                        if (gpaAcrossCourses[2] < 1.7) count++;
+                                        if (gpaAcrossCourses[4] < 1.7) count++;
+                                        if(gpaAcrossCourses[1] < 3.0 || count >=2){
+                                            extracheck = false;
+                                        }
+                                        break;
+                                    case "Mathematics Specialist":
+                                        count = 0;
+                                        if (gpaAcrossCourses[0] < 3.0) count++;
+                                        if (gpaAcrossCourses[1] < 3.0) count++;
+                                        if (gpaAcrossCourses[3] < 3.0) count++;
+                                        if (count >= 2) extracheck = false;
+                                        break;
+                                    case "Mathematics Major":
+                                        count = 0;
+                                        if (gpaAcrossCourses[0] < 3.0 && gpaAcrossCourses[1]
+                                                < 3.0 && gpaAcrossCourses[3] < 3.0) extracheck = false;
+                                        break;
+                                    default: extracheck = true;
+                                }
+
+                                if (avgGPA >= thresholds[position] && extracheck == true){
                                     postSuccess.setVisibility(View.VISIBLE);
                                     KonfettiView konfettiView = root.findViewById(R.id.konfettiView);
                                     EmitterConfig emitterConfig = new Emitter(100L, TimeUnit.MILLISECONDS).max(100);

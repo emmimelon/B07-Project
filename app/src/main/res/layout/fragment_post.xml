@@ -19,14 +19,23 @@
     <TextView
         android:id="@+id/text_post"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:paddingLeft="12dp"
         android:text="Check if you qualify for POSt!"
         android:textColor="@color/uoftBlue"
         android:textSize="24sp"
-        app:layout_constraintTop_toTopOf="@+id/konfettiView"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/post_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Note: if you are applying for Machine Learning or Data Specialist Stream, you need a minimum GPA of 3.0 in CSCA48"
+        android:textAlignment="viewStart"
+        android:paddingLeft="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/text_post"></TextView>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -35,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="Select your desired program"
-        app:layout_constraintTop_toBottomOf="@+id/text_post"
+        app:layout_constraintTop_toBottomOf="@+id/post_note"
         tools:layout_editor_absoluteX="16dp">
 
         <AutoCompleteTextView
@@ -69,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:hint="Select your GPA">
+            android:hint="Select your GPA for the above course">
 
             <AutoCompleteTextView
                 android:id="@+id/autoGPAChoice"
