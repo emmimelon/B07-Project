@@ -1,5 +1,6 @@
 package com.example.b07project.login;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.example.b07project.MainActivity;
 import com.example.b07project.R;
 import com.example.b07project.WelcomeActivity;
 import com.example.b07project.databinding.FragmentLoginBinding;
+import com.example.b07project.objects.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -65,9 +67,10 @@ public class LoginFragment extends Fragment {
                             correctType = snapshot.child("Type").getValue().equals("Student");
 
                             if (correctPassword && correctType) {
-                                Intent in2 = new Intent(getActivity(), MainActivity.class);
-                                in2.putExtra("message2", "Successfully Logged In As Student");
-                                startActivity(in2);
+                                Intent stuIntent = new Intent(getActivity().getBaseContext(), WelcomeActivity.class);
+                                String utorid = inputUTORID.getText().toString();
+                                stuIntent.putExtra("studentUTORid", utorid);
+                                getActivity().startActivity(stuIntent);
                             } else {
                                 errorMessage();
                             }
@@ -97,9 +100,10 @@ public class LoginFragment extends Fragment {
                             correctPassword = snapshot.child("Password").getValue().equals(inputPassword.getText().toString());
                             correctType = snapshot.child("Type").getValue().equals("Admin");
                             if (correctPassword && correctType) {
-                                Intent in = new Intent(getActivity(), AdminActivity.class);
-                                in.putExtra("message3", "Successfully Logged In As Admin3");
-                                startActivity(in);
+                                Intent admIntent = new Intent(getActivity().getBaseContext(), WelcomeActivity.class);
+                                String utorid = inputUTORID.getText().toString();
+                                admIntent.putExtra("adminUTORid", utorid);
+                                getActivity().startActivity(admIntent);
                             } else {
                                 errorMessage();
                             }

@@ -4,8 +4,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class User {
-    public String utorid;
-    public String password;
+    private static String utorid;
+    private String password;
 
     public String userType;
     private DatabaseReference mDatabase;
@@ -18,6 +18,9 @@ public class User {
         this.utorid = utorid;
         this.password = password;
         this.userType = userType;
+    }
+    public String getUTORid(){
+        return utorid;
     }
     public void writeNewUser(String utorid, String password, String userType) {
         User user = new User(utorid, password, userType);

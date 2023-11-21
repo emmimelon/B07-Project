@@ -1,5 +1,6 @@
 package com.example.b07project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -25,6 +26,11 @@ public class AdminActivity extends AppCompatActivity {
         binding = ActivityAdminBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        Intent intent = getIntent();
+        String user = intent.getStringExtra("UTORid");
+        Toast.makeText(getApplicationContext(), "Signed in as: " + user,
+                Toast.LENGTH_SHORT).show();
+
         BottomNavigationView adminNavView = findViewById(R.id.admin_nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -34,13 +40,6 @@ public class AdminActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_admin);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.adminNavView, navController);
-
-        Bundle bundle = getIntent().getExtras();
-        if(bundle != null){
-            bundle.getString("message3");
-            Toast.makeText(getApplicationContext(), bundle.getString("message3"),
-                    Toast.LENGTH_SHORT).show();
-        }
     }
 
 }

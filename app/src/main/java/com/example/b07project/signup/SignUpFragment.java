@@ -74,9 +74,10 @@ public class SignUpFragment extends Fragment {
                             ref.child("Name").setValue(inputName.getText().toString());
                             ref.child("Password").setValue(inputPassword.getText().toString());
 
-                            Intent in = new Intent(getActivity(), WelcomeActivity.class);
-                            in.putExtra("message1", "Successfully Signed Up");
-                            startActivity(in);
+                            Intent stuIntent = new Intent(getActivity().getBaseContext(), WelcomeActivity.class);
+                            String utorid = inputUTORID.getText().toString();
+                            stuIntent.putExtra("studentUTORid", utorid);
+                            getActivity().startActivity(stuIntent);
 
                         }
                     }
@@ -113,10 +114,10 @@ public class SignUpFragment extends Fragment {
                             ref.child("Name").setValue(inputName.getText().toString());
                             ref.child("Password").setValue(inputPassword.getText().toString());
 
-                            Intent in = new Intent(getActivity(), WelcomeActivity.class);
-                            in.putExtra("message", "Successfully Signed Up");
-                            startActivity(in);
-
+                            Intent admIntent = new Intent(getActivity().getBaseContext(), WelcomeActivity.class);
+                            String utorid = inputUTORID.getText().toString();
+                            admIntent.putExtra("adminUTORid", utorid);
+                            getActivity().startActivity(admIntent);
                         }
                     }
 
