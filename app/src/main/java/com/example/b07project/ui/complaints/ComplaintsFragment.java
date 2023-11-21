@@ -32,6 +32,8 @@ public class ComplaintsFragment extends Fragment {
     private String user;
     Button btnSubmitComplaint;
 
+    boolean justAdded = false;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -47,9 +49,10 @@ public class ComplaintsFragment extends Fragment {
         btnSubmitComplaint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                justAdded = false;
                 String inputTitle = inputComplaintTitle.getText().toString();
                 String inputDescription = inputComplaintDescription.getText().toString();
-                if (inputTitle == "" || inputDescription == ""){
+                if (inputTitle.equals("") || inputDescription.equals("")){
                     Toast.makeText(getActivity(), "Please fill in your complaint details", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -57,7 +60,14 @@ public class ComplaintsFragment extends Fragment {
                     ref.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            ref.setValue(inputDescription);
+                            if (!snapshot.exists()){
+                                ref.setValue(inputDescription);
+                                justAdded = true;
+                                Toast.makeText(getActivity(), "Submitted Complaint!", Toast.LENGTH_SHORT).show();
+                            }
+                            else if (justAdded == false){
+                                Toast.makeText(getActivity(), "You already made an unresolved complaint with this title!", Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                         @Override
@@ -65,7 +75,6 @@ public class ComplaintsFragment extends Fragment {
 
                         }
                     });
-                    Toast.makeText(getActivity(), "Submitted Complaint!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
