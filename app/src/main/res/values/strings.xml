@@ -54,4 +54,5 @@
         Enter your password.
     </string>
     <string name="title_activity_admin">AdminActivity</string>
+    <string name="complaint_name">Name</string>
 </resources>
