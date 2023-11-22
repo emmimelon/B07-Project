@@ -18,9 +18,14 @@
         tools:layout="@layout/fragment_events" />
 
     <fragment
+            android:id="@+id/navigation_schedule_events"
+            android:name="com.example.b07project.ui.events.ScheduleEventsFragment"
+            android:label="ScheduleEvents"
+            tools:layout="@layout/fragment_schedule_events" />
+
+    <fragment
         android:id="@+id/navigation_complaints"
         android:name="com.example.b07project.ui.complaints.ComplaintsFragment"
         android:label="Complaints"
         tools:layout="@layout/fragment_complaints" />
-
 </navigation>

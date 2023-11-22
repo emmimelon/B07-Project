@@ -4,14 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.b07project.R;
-
 import com.example.b07project.databinding.FragmentEventsBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,58 +19,57 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
-
 public class EventsFragment extends Fragment {
 
-    private @NonNull FragmentEventsBinding binding;
-    ArrayList<EventsModel> eventsModels = new ArrayList<>();
+    private FragmentEventsBinding binding;
     private FirebaseDatabase db;
     private DatabaseReference ref;
+    private EditText eventName, eventDate, eventDescription, eventLocation, participationLimit;
+    private Button submitEventButton;
+    private View root;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentEventsBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        root = binding.getRoot();
 
-        RecyclerView recyclerView = root.findViewById(R.id.myRecyclerView);
-        setUpEvents();
+        db = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
+        eventName = root.findViewById(R.id.eventName);
+        eventDate = root.findViewById(R.id.eventDate);
+        eventDescription = root.findViewById(R.id.eventDescription);
+        eventLocation = root.findViewById(R.id.eventLocation);
+        participationLimit = root.findViewById(R.id.participationLimit);
+        submitEventButton = root.findViewById(R.id.submitEventButton);
 
-        Event_recyclerViewAdapter adapter = new Event_recyclerViewAdapter(this.getActivity(), eventsModels);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        submitEventButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ref = db.getInstance().getReference("Events").child(eventName.getText().toString());
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        submitData();
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
+                    }
+                });
+                Toast.makeText(getActivity(), "Congrats! Your event is scheduled successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+    private void submitData() {
+        String date = eventDate.getText().toString();
+        String description = eventDescription.getText().toString();
+        String location = eventLocation.getText().toString();
+        int limit = Integer.parseInt(participationLimit.getText().toString());
 
-    private void setUpEvents(){
-        db = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
-        ref = db.getReference("Events");
-
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot snap: snapshot.getChildren())
-                {
-                    // HAVING A NULL REFERENCE ISSUE
-                    // String eName = snap.getValue().toString();
-                    //String eLocation = snap.child("Location").getValue().toString();
-                    //String eDate = snap.child("Date").getValue().toString();
-                    //eventsModels.add(new EventsModel(eName,eName,eDate));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+        ref.child("Date").setValue(date);
+        ref.child("Description").setValue(description);
+        ref.child("Location").setValue(location);
+        ref.child("Participation Limit").setValue(limit);
     }
 }
