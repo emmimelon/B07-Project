@@ -11,12 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Event_recyclerViewAdapter extends RecyclerView.Adapter<Event_recyclerViewAdapter.myViewHolder>{
 
     Context context;
-    ArrayList<EventsModel> eventsModels;
-    public Event_recyclerViewAdapter(Context context, ArrayList<EventsModel> eventsModels){
+    List<EventsModel> eventsModels;
+    public Event_recyclerViewAdapter(Context context, List<EventsModel> eventsModels){
         this.context = context;
         this.eventsModels = eventsModels;
     }
@@ -24,7 +25,7 @@ public class Event_recyclerViewAdapter extends RecyclerView.Adapter<Event_recycl
     @Override
     public Event_recyclerViewAdapter.myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.recycler_view_row, parent, false);
+        View view = inflater.inflate(R.layout.recycler_format, parent, false);
         return new Event_recyclerViewAdapter.myViewHolder(view);
     }
 

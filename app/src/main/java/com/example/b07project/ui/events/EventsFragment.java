@@ -25,10 +25,21 @@ import java.util.ArrayList;
 public class EventsFragment extends Fragment {
 
     private @NonNull FragmentEventsBinding binding;
-    ArrayList<EventsModel> eventsModels = new ArrayList<>();
+    static ArrayList<EventsModel> eventsModels = new ArrayList<>();
     private FirebaseDatabase db;
     private DatabaseReference ref;
+    Boolean isFound;
 
+    public EventsFragment() {
+        // empty constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -36,41 +47,34 @@ public class EventsFragment extends Fragment {
         View root = binding.getRoot();
 
         RecyclerView recyclerView = root.findViewById(R.id.myRecyclerView);
-        setUpEvents();
+        //setUpEvents();
 
-        Event_recyclerViewAdapter adapter = new Event_recyclerViewAdapter(this.getActivity(), eventsModels);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-
-        return root;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-
-    private void setUpEvents(){
         db = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
         ref = db.getReference("Events");
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        recyclerView.setAdapter(new Event_recyclerViewAdapter(getActivity().getApplicationContext(), eventsModels));
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot snap: snapshot.getChildren())
-                {
-                    // HAVING A NULL REFERENCE ISSUE
-                    // String eName = snap.getValue().toString();
-                    //String eLocation = snap.child("Location").getValue().toString();
-                    //String eDate = snap.child("Date").getValue().toString();
-                    //eventsModels.add(new EventsModel(eName,eName,eDate));
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    String eName = snap.getKey().toString();
+                    String eLocation = snap.child("Location").getValue().toString();
+                    String eDate = snap.child("Date").getValue().toString();
+                    EventsModel e = new EventsModel(eName, eLocation, eDate);
+                    if (!eventsModels.contains(e)) {
+                        eventsModels.add(e);
+                    }
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+
+        return root;
     }
 }
