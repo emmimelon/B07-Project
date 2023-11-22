@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.b07project.R;
 import com.example.b07project.databinding.FragmentEventsBinding;
@@ -25,11 +26,14 @@ public class EventsFragment extends Fragment {
     private FirebaseDatabase db;
     private DatabaseReference ref;
     private EditText eventName, eventDate, eventDescription, eventLocation, participationLimit;
-    private Button submitEventButton;
+    private Button submitEventButton, viewEventsButton;
     private View root;
 
+    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        EventsViewModel eventsViewModel = new ViewModelProvider(this).get(EventsViewModel.class);
         binding = FragmentEventsBinding.inflate(inflater, container, false);
         root = binding.getRoot();
 
@@ -40,22 +44,41 @@ public class EventsFragment extends Fragment {
         eventLocation = root.findViewById(R.id.eventLocation);
         participationLimit = root.findViewById(R.id.participationLimit);
         submitEventButton = root.findViewById(R.id.submitEventButton);
+        viewEventsButton = root.findViewById(R.id.viewEventsButton);
 
         submitEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ref = db.getInstance().getReference("Events").child(eventName.getText().toString());
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        submitData();
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                boolean uncompleted = eventName.getText().toString().isEmpty() ||
+                        eventDate.getText().toString().isEmpty() ||
+                        eventDescription.getText().toString().isEmpty() ||
+                        eventLocation.getText().toString().isEmpty() ||
+                        participationLimit.getText().toString().isEmpty();
+                if (uncompleted) {
+                    Toast.makeText(getActivity(), "Please fill in all required fields!!!", Toast.LENGTH_SHORT).show();
+                } else {
+                    ref = db.getInstance().getReference("Events").child(eventName.getText().toString());
+                    ref.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            submitData();
+                        }
 
-                    }
-                });
-                Toast.makeText(getActivity(), "Congrats! Your event is scheduled successfully", Toast.LENGTH_SHORT).show();
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    Toast.makeText(getActivity(), "Congrats! Your event is scheduled successfully", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        viewEventsButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // start a fragment transaction to navigate to EventListFragment
             }
         });
         return root;
