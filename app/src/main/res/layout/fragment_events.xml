@@ -4,15 +4,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".ui.events.EventsFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/myRecyclerView"
-        android:layout_width="297dp"
-        android:layout_height="268dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/schedule_events_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/schedule_events"
+        android:textColor="#03A9F4"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/eventName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/eventName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:autofillHints="name"
+        android:fontFamily="@font/amaranth"
+        android:hint="@string/schedule_event_name_text"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/schedule_events_title"
+        app:layout_constraintWidth_max="400dp" />
+
+    <EditText
+        android:id="@+id/eventDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="date"
+        android:fontFamily="@font/amaranth"
+        android:hint="@string/schedule_event_date_text"
+        android:inputType="date"
+        android:minHeight="48dp"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eventName"
+        app:layout_constraintWidth_max="400dp" />
+
+    <EditText
+        android:id="@+id/eventDescription"
+        android:layout_width="376dp"
+        android:layout_height="129dp"
+        android:autofillHints="textLongMessage"
+        android:fontFamily="@font/amaranth"
+        android:gravity="top"
+        android:hint="@string/schedule_event_description_text"
+        android:inputType="textMultiLine"
+        android:minHeight="222dp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/eventDate"
+        app:layout_constraintWidth_max="400dp" />
+
+    <EditText
+        android:id="@+id/eventLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="postalAddress"
+        android:fontFamily="@font/amaranth"
+        android:hint="@string/schedule_event_location_text"
+        android:inputType="textPostalAddress"
+        android:minHeight="48dp"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eventDescription"
+        app:layout_constraintWidth_max="400dp" />
+
+    <EditText
+        android:id="@+id/participationLimit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="number"
+        android:fontFamily="@font/amaranth"
+        android:hint="@string/schedule_event_partici_limit_text"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eventLocation"
+        app:layout_constraintWidth_max="400dp" />
+
+    <Button
+        android:id="@+id/submitEventButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/amaranth"
+        android:text="@string/schedule_event_submit_button"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/participationLimit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
