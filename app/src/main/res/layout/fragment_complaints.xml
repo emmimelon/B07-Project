@@ -7,20 +7,6 @@
     tools:context=".ui.complaints.ComplaintsFragment">
 
     <TextView
-        android:id="@+id/text_complaints"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/text_complaint_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +14,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-black"
         android:text="Have a Complaint? "
-        android:textColor="#03A9F4"
+        android:textColor="@color/uoftBlue"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,33 +24,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textColor="@color/uoftBlueVariant"
         android:text="Oh no! Please let us know how we can improve."
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_complaint_title" />
 
     <EditText
         android:id="@+id/editTextComplaintTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_width="381dp"
+        android:layout_height="55dp"
         android:layout_marginTop="64dp"
         android:ems="10"
+        android:hint="Please enter a title for your complaint"
         android:inputType="text"
-        android:text="Title"
-        android:textSize="24sp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_complaint_description" />
 
     <EditText
         android:id="@+id/editTextComplaintDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_width="382dp"
+        android:layout_height="107dp"
         android:ems="10"
         android:gravity="start|top"
+        android:hint="Please enter a description of your complaint"
         android:inputType="textMultiLine"
-        android:text="Description"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextComplaintTitle" />
 

@@ -59,4 +59,22 @@
     <string name="complaint_username">Username</string>
     <string name="complaint_description">Complaint description</string>
     <string name="back_text">Back</string>
+    <string name="title_activity_sign_up2">SignUp2</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="create_announcements">Create Announcements</string>
+    <string name="events">Events</string>
+    <string name="schedule_event_name_text">Event Name</string>
+    <string name="schedule_event_date_text">Date</string>
+    <string name="schedule_event_description_text">Description</string>
+    <string name="schedule_event_location_text">Location</string>
+    <string name="schedule_event_partici_limit_text">Participation Limit</string>
+    <string name="schedule_event_submit_button">Submit</string>
+    <string name="schedule_events">Schedule Events</string>
+    <string name="description">Description</string>
+    <string name="title_required">Title (Required)</string>
+    <string name="submit">Submit</string>
 </resources>
