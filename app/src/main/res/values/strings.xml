@@ -69,5 +69,8 @@
     <string name="schedule_event_partici_limit_text">Participation Limit</string>
     <string name="schedule_event_submit_button">Submit</string>
     <string name="schedule_events">Schedule Events</string>
+    <string name="description">Description</string>
+    <string name="title_required">Title (Required)</string>
+    <string name="submit">Submit</string>
 
 </resources>
