@@ -4,18 +4,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Complaint {
-    public String utorid;
-    public String complaintTitle;
-    public String complaintDescription;
+    private String id;
+    private String complaintTitle;
+    private String complaintDescription;
     private DatabaseReference mDatabase;
-    public Complaint(String utorid, String complaintTitle, String complaintDescription) {
-        this.utorid = utorid;
+    public Complaint(String email, String complaintTitle, String complaintDescription) {
+        this.id = email;
         this.complaintTitle = complaintTitle;
         this.complaintDescription = complaintDescription;
     }
-    public void writeNewComplaint(String utorid, String complaintTitle, String complaintDescription) {
-        Complaint complaint = new Complaint(utorid, complaintTitle, complaintDescription);
+    public void writeNewComplaint() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Complaints").child(utorid).setValue(complaint);
+        mDatabase.child("Complaints").child(id).child(complaintTitle).setValue(complaintDescription);
     }
 }

@@ -15,7 +15,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.b07project.R;
 import com.example.b07project.databinding.FragmentComplaintsBinding;
+import com.example.b07project.objects.Complaint;
 import com.example.b07project.objects.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +32,6 @@ public class ComplaintsFragment extends Fragment {
     private DatabaseReference ref;
     private FirebaseDatabase firebaseDatabase;
     EditText inputComplaintTitle, inputComplaintDescription;
-    private String user;
     Button btnSubmitComplaint;
 
     boolean justAdded = false;
@@ -39,8 +41,7 @@ public class ComplaintsFragment extends Fragment {
 
         binding = FragmentComplaintsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        String user = getArguments().getString("UTORid"); //THIS GETS THE UTORID
+        String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
         inputComplaintTitle = root.findViewById(R.id.editTextComplaintTitle);
@@ -52,16 +53,17 @@ public class ComplaintsFragment extends Fragment {
                 justAdded = false;
                 String inputTitle = inputComplaintTitle.getText().toString();
                 String inputDescription = inputComplaintDescription.getText().toString();
+                Complaint complaint = new Complaint(id, inputTitle, inputDescription);
                 if (inputTitle.equals("") || inputDescription.equals("")){
                     Toast.makeText(getActivity(), "Please fill in your complaint details", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    ref = firebaseDatabase.getReference("Complaints").child(user).child(inputTitle);
+                    ref = firebaseDatabase.getReference("Complaints").child(id).child(inputTitle);
                     ref.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (!snapshot.exists()){
-                                ref.setValue(inputDescription);
+                                complaint.writeNewComplaint();
                                 justAdded = true;
                                 Toast.makeText(getActivity(), "Submitted Complaint!", Toast.LENGTH_SHORT).show();
                             }

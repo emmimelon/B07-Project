@@ -13,28 +13,18 @@ import android.widget.Toast;
 import com.example.b07project.R;
 import com.example.b07project.login.LoginFragment;
 import com.example.b07project.signup.SignUpFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class WelcomeActivity extends AppCompatActivity {
 
     Button goLogin;
     Button goSignup;
+
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Intent Logged = getIntent();
-        if (Logged.getStringExtra("studentUTORid") != null){
-            Intent startStu = new Intent(WelcomeActivity.this, MainActivity.class);
-            String user = Logged.getStringExtra("studentUTORid");
-            startStu.putExtra("UTORid", user);
-            startActivity(startStu);
-        }
-        else if (Logged.getStringExtra("adminUTORid") != null){
-            Intent startAdm = new Intent(WelcomeActivity.this, AdminActivity.class);
-            String user = Logged.getStringExtra("adminUTORid");
-            startAdm.putExtra("UTORid", user);
-            startActivity(startAdm);
-        }
 
         setContentView(R.layout.activity_welcome);
 
