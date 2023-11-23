@@ -38,11 +38,21 @@ public class AdminAnnouncementsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        AdminAnnouncementsViewModel adminAnnouncementsViewModel =
-                new ViewModelProvider(this).get(AdminAnnouncementsViewModel.class);
 
         binding = FragmentAdminAnnouncementsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        Bundle bundle = getArguments();
+        if (bundle != null){
+            Toast.makeText(getActivity(), "bundle exists",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(getActivity(), "no bundle exists",
+                    Toast.LENGTH_SHORT).show();
+        }
+        //String user = bundle.getString("UTORid");
+        //String user = getArguments().getString("UTORid");
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
         inputAnnouncementsTitle = root.findViewById(R.id.editAnnouncementTitle);
