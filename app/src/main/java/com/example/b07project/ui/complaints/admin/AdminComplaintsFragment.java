@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,8 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.b07project.objects.admin.Complaint;
-import com.example.b07project.ComplaintViewInterface;
-import com.example.b07project.DetailedComplaintFragment;
 import com.example.b07project.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +26,8 @@ public class AdminComplaintsFragment extends Fragment implements ComplaintViewIn
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference ref;
+    private RecyclerView recyclerView;
+    List<Complaint> complaints;
     public AdminComplaintsFragment() {
         // Required empty public constructor
     }
@@ -39,14 +40,13 @@ public class AdminComplaintsFragment extends Fragment implements ComplaintViewIn
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_admin_complaints, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
+        recyclerView = view.findViewById(R.id.recyclerview);
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
         ref = firebaseDatabase.getReference("Complaints");
 
-        List<Complaint> complaints = new ArrayList<>();
+        complaints = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         recyclerView.setAdapter(new ComplaintAdapter(getActivity().getApplicationContext(), complaints, this));
         ref.addValueEventListener(new ValueEventListener() {
@@ -74,6 +74,11 @@ public class AdminComplaintsFragment extends Fragment implements ComplaintViewIn
 
     @Override
     public void onItemClick(int position) {
-        getParentFragmentManager().beginTransaction().replace(R.id.adminContainer, new DetailedComplaintFragment());
+        String title = complaints.get(position).getTitle();
+        String name = complaints.get(position).getName();
+        String desc = complaints.get(position).getDescription();
+        this.getParentFragmentManager().beginTransaction().hide(this).commit();
+        FragmentTransaction fragTrans = getActivity().getSupportFragmentManager().beginTransaction();
+        fragTrans.add(R.id.adminContainer, new DetailedComplaintFragment(title, name, desc, this)).commit();
     }
 }

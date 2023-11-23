@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.b07project.ComplaintViewInterface;
 import com.example.b07project.R;
 import com.example.b07project.objects.admin.Complaint;
 

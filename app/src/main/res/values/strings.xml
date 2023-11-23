@@ -55,4 +55,8 @@
     </string>
     <string name="title_activity_admin">AdminActivity</string>
     <string name="complaint_name">Name</string>
+    <string name="complaint_title">This is the complaint title</string>
+    <string name="complaint_username">Username</string>
+    <string name="complaint_description">Complaint description</string>
+    <string name="back_text">Back</string>
 </resources>

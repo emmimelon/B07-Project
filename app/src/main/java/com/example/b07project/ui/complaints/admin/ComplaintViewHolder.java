@@ -7,7 +7,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.b07project.ComplaintViewInterface;
 import com.example.b07project.R;
 
 public class ComplaintViewHolder extends RecyclerView.ViewHolder {

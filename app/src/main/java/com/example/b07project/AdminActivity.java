@@ -34,4 +34,6 @@ public class AdminActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.adminNavView, navController);
     }
 
+
+
 }
