@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.b07project.R;
 import com.example.b07project.databinding.FragmentAdminAnnouncementsBinding;
 import com.example.b07project.databinding.FragmentComplaintsBinding;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +32,6 @@ public class AdminAnnouncementsFragment extends Fragment {
     private DatabaseReference ref;
     private FirebaseDatabase firebaseDatabase;
     EditText inputAnnouncementsTitle, inputAnnouncementDescription;
-    private String utorid;
 
     private Toast toast;
     Button btnSubmitAnnouncement;
@@ -42,17 +42,8 @@ public class AdminAnnouncementsFragment extends Fragment {
         binding = FragmentAdminAnnouncementsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        Bundle bundle = getArguments();
-        if (bundle != null){
-            Toast.makeText(getActivity(), "bundle exists",
-                    Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(getActivity(), "no bundle exists",
-                    Toast.LENGTH_SHORT).show();
-        }
-        //String user = bundle.getString("UTORid");
-        //String user = getArguments().getString("UTORid");
+        String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String userFullName  = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
         inputAnnouncementsTitle = root.findViewById(R.id.editAnnouncementTitle);
@@ -63,27 +54,32 @@ public class AdminAnnouncementsFragment extends Fragment {
 
             @Override
                     public void onClick(View v) {
-                if (inputAnnouncementsTitle.getText().toString().equals("")) {
-                    toast = Toast.makeText(getActivity(), "Please enter a title", Toast.LENGTH_LONG);
-                    toast.show();
-                } else {
-                    ref = firebaseDatabase.getReference("Announcements").child(inputAnnouncementsTitle.getText().toString());
-                    ref.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            ref.setValue(inputAnnouncementDescription.getText().toString());
+                        String inputTitle = inputAnnouncementsTitle.getText().toString();
+                        String inputDescription = inputAnnouncementDescription.getText().toString();
+                        if (inputTitle.equals("")) {
+                            toast = Toast.makeText(getActivity(), "Please enter a title", Toast.LENGTH_LONG);
+                            toast.show();
+                        } else {
+                            ref = firebaseDatabase.getReference("Announcements").child(id);
+                            ref.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    ref.child(inputTitle).setValue(inputDescription);
+                                    ref.child("createdBy").setValue(userFullName);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+
+                            });
+                            toast = Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT);
+                            toast.show();
+                            inputAnnouncementsTitle.setText("");
+                            inputAnnouncementDescription.setText("");
                         }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-
-                    });
-                    toast = Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            }
+                    }
         });
         return root;
     }
