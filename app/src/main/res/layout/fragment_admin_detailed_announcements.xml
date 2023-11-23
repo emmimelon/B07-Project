@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".ui.adminannouncements.AdminDetailedAnnouncementsFragment"
+    android:id="@+id/adminDetailedANnouncementsFragment">
+
+    <TextView
+        android:id="@+id/adminAnnouncementTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="sans-serif"
+        android:padding="10dp"
+        android:lines="1"
+        android:text="@string/announcement_title"
+        android:textColor="@color/black"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/adminAnnouncementUsername"
+        android:autoSizeTextType="uniform"
+        android:lines="1"
+        android:layout_width="wrap_content"
+        android:paddingLeft="10dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:text="@string/complaint_username"
+        android:layout_below="@+id/adminAnnouncementTitle"/>
+    <TextView
+        android:id="@+id/adminAnnouncementDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:textColor="@color/black"
+        android:text="@string/announcement_description"
+        android:layout_below="@+id/adminAnnouncementUsername"/>
+
+    <Button
+        android:id="@+id/admin_announcements_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center|bottom"
+        android:text="@string/back_text" />
+</RelativeLayout>
