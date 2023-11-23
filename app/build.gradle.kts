@@ -49,6 +49,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment:2.7.5")
     implementation("androidx.navigation:navigation-ui:2.7.5")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
     testImplementation("junit:junit:4.13.2")
     implementation("androidx.recyclerview:recyclerview:1.1.0")
     implementation("nl.dionsegijn:konfetti-xml:2.0.3")

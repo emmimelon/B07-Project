@@ -54,6 +54,11 @@
         Enter your password.
     </string>
     <string name="title_activity_admin">AdminActivity</string>
+    <string name="complaint_name">Name</string>
+    <string name="complaint_title">This is the complaint title</string>
+    <string name="complaint_username">Username</string>
+    <string name="complaint_description">Complaint description</string>
+    <string name="back_text">Back</string>
     <string name="title_activity_sign_up2">SignUp2</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -72,5 +77,4 @@
     <string name="description">Description</string>
     <string name="title_required">Title (Required)</string>
     <string name="submit">Submit</string>
-
 </resources>
