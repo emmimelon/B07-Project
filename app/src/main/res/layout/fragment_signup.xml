@@ -4,33 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#242525">
+    android:background="@color/darkbg">
+
+    <TextView
+        android:id="@+id/outputMessage"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:gravity="center"
+        android:textColor="@color/error"
+        app:layout_constraintBottom_toTopOf="@id/signupButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/createAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/createMessage"
-        android:textColor="@color/white"
+        android:textColor="@color/uoftBlueLight"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.082" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="318dp"
+        android:layout_marginTop="36dp"
         android:orientation="vertical"
         android:paddingLeft="48dp"
-        app:layout_constraintBottom_toTopOf="@id/studentButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/createAccount"
-        app:layout_constraintVertical_bias="0.287"
         app:layout_marginBaseline="12dp">
 
         <TextView
@@ -39,7 +50,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
             android:text="Enter your Full Name"
-            android:textColor="@color/white"
+            android:textColor="@color/uoftGray"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/enterName"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,8 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:background="#A4A5F5"
-            android:backgroundTint="#A4A5F5"
+            android:background="@color/uoftGray"
             android:ems="10"
             android:inputType="text"
             app:layout_constraintTop_toBottomOf="@id/name" />
@@ -61,7 +71,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
             android:text="Enter your UOFT email"
-            android:textColor="@color/white"
+            android:textColor="@color/uoftGray"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/enterEmail"
             app:layout_constraintTop_toTopOf="@id/enterName" />
@@ -71,8 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:background="#A4A5F5"
-            android:backgroundTint="#A4A5F5"
+            android:background="@color/uoftGray"
             android:ems="10"
             android:inputType="text"
             app:layout_constraintTop_toBottomOf="@id/uoftemail" />
@@ -83,7 +92,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
             android:text="Create a Password"
-            android:textColor="@color/white"
+            android:textColor="@color/uoftGray"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/enterEmail" />
@@ -93,46 +102,47 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:background="#A4A5F5"
+            android:background="@color/uoftGray"
             android:ems="10"
             android:inputType="textPassword"
             app:layout_constraintTop_toBottomOf="@id/pw" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="288dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/selectStudent"
+                android:layout_width="110dp"
+                android:layout_height="65dp"
+                android:layout_marginRight="24dp"
+                android:text="Student"
+                android:textColor="@color/uoftGray"
+                android:textSize="16sp"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/selectAdmin"
+                android:layout_width="148dp"
+                android:layout_height="wrap_content"
+                android:text="Admin"
+                android:textColor="@color/uoftGray"
+                android:textSize="16sp"></RadioButton>
+        </RadioGroup>
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/studentButton"
-        android:layout_width="255dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="4dp"
-        android:background="#A4A5F5"
-        android:backgroundTint="#A4A5F5"
-
-        android:text="@string/student"
-        app:layout_constraintBottom_toTopOf="@+id/adminButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/adminButton"
+        android:id="@+id/signupButton"
         android:layout_width="255dp"
         android:layout_height="48dp"
         android:layout_marginBottom="64dp"
-        android:background="#A4A5F5"
-        android:backgroundTint="#A4A5F5"
-        android:text="@string/admin"
+        android:background="@color/uoftBlueLight"
+        android:text="Create Account"
+        android:textColor="@color/uoftGray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/output"
-        android:textColor="@color/white"
-        android:layout_width="0dp"
-        android:layout_height="38dp"
-        android:gravity="center_horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adminButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

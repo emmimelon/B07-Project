@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#242525">
+    android:background="@color/darkbg">
 
     <TextView
         android:id="@+id/textview_first"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:text="@string/loginMessage"
-        android:textColor="@color/white"
+        android:textColor="@color/uoftBlueLight"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,10 +30,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.294"
+        app:layout_constraintHorizontal_bias="0.328"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textview_first"
-        app:layout_constraintVertical_bias="0.113" />
+        app:layout_constraintVertical_bias="0.109" />
 
     <TextView
         android:id="@+id/pwlogin"
@@ -51,25 +51,14 @@
         app:layout_constraintVertical_bias="0.053" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/loginStudentButton"
+        android:id="@+id/loginButton"
         android:layout_width="255dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="12dp"
-        android:background="#A4A5F5"
-        android:backgroundTint="#A4A5F5"
-        android:text="@string/studentLogin"
-        app:layout_constraintBottom_toTopOf="@id/loginAdminButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/loginAdminButton"
-        android:layout_width="255dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="40dp"
-        android:background="#A4A5F5"
-        android:backgroundTint="#A4A5F5"
-        android:text="@string/adminLogin"
+        android:layout_marginBottom="84dp"
+        android:background="@color/uoftBlueLight"
+        android:backgroundTint="@color/uoftBlueLight"
+        android:text="LogIn"
+        android:textColor="@color/uoftGray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -79,10 +68,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:background="#A4A5F5"
+        android:background="@color/uoftGray"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@id/loginStudentButton"
+        app:layout_constraintBottom_toTopOf="@id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,8 +83,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="#A4A5F5"
-        android:backgroundTint="#A4A5F5"
+        android:background="@color/uoftGray"
+        android:backgroundTint="@color/uoftGray"
         android:ems="10"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,11 +97,13 @@
         android:id="@+id/output2"
         android:layout_width="0dp"
         android:layout_height="38dp"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/loginStudentButton"
+        android:gravity="center"
+        android:textColor="@color/error"
+        app:layout_constraintBottom_toTopOf="@id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginPassword" />
+        app:layout_constraintTop_toBottomOf="@id/loginPassword"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

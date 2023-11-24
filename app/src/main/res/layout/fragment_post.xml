@@ -16,53 +16,65 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text_post"
+    <LinearLayout
+        android:id="@+id/programs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:paddingLeft="12dp"
-        android:text="Check if you qualify for POSt!"
-        android:textColor="@color/uoftBlue"
-        android:textSize="24sp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/selectGPA"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
-
-    <TextView
-        android:id="@+id/post_note"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Note: if you are applying for Machine Learning or Data Specialist Stream, you need a minimum GPA of 3.0 in CSCA48"
-        android:textAlignment="viewStart"
-        android:paddingLeft="12dp"
-        app:layout_constraintTop_toBottomOf="@+id/text_post"></TextView>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:hint="Select your desired program"
-        app:layout_constraintTop_toBottomOf="@+id/post_note"
         tools:layout_editor_absoluteX="16dp">
 
-        <AutoCompleteTextView
-            android:id="@+id/autoPostChoice"
+        <TextView
+            android:id="@+id/text_post"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:fontFamily="sans-serif-black"
+            android:paddingLeft="12dp"
+            android:text="Check if you qualify for POSt!"
+            android:textColor="@color/uoftBlue"
+            android:textSize="24sp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:id="@+id/post_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="12dp"
+            android:text="Note: if you are applying for Machine Learning or Data Specialist Stream, you need a minimum GPA of 3.0 in CSCA48"
+            android:textAlignment="viewStart"
+            app:layout_constraintTop_toBottomOf="@+id/text_post"></TextView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="Select your desired program"
+            app:layout_constraintTop_toBottomOf="@id/post_note"
+            tools:layout_editor_absoluteX="16dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoPostChoice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/selectGPA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/programs">
+
         <TextView
             android:id="@+id/courseCode"
             android:layout_width="wrap_content"
@@ -71,8 +83,8 @@
             android:paddingLeft="12dp"
             android:text="Course: "
             android:textColor="#000000"
-            android:textSize="20sp">
-        </TextView>
+            android:textSize="20sp"></TextView>
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
@@ -96,7 +108,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:layout_constraintTop_toBottomOf="@id/programs">
 
         <TextView
             android:id="@+id/madePOSt"
@@ -110,7 +122,7 @@
             app:layout_constraintBottom_toTopOf="@+id/emojiPOSt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selectGPA"></TextView>
+            app:layout_constraintTop_toBottomOf="@id/selectGPA"></TextView>
 
         <ImageView
             android:id="@+id/emojiPOSt"
@@ -123,7 +135,7 @@
             android:scaleY="5"
             android:src="@drawable/veryhappy"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/madePOSt">
+            app:layout_constraintTop_toBottomOf="@id/madePOSt">
 
         </ImageView>
     </LinearLayout>
@@ -135,7 +147,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:layout_constraintTop_toBottomOf="@id/programs">
 
         <TextView
             android:id="@+id/failedPOSt"
