@@ -46,7 +46,7 @@ public class EventsFragment extends Fragment {
         eventLocation = root.findViewById(R.id.eventLocation);
         participationLimit = root.findViewById(R.id.participationLimit);
         submitEventButton = root.findViewById(R.id.submitEventButton);
-        viewEventsButton = root.findViewById(R.id.viewEventsButton);
+        // viewEventsButton = root.findViewById(R.id.viewEventsButton);
 
         submitEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,13 +76,15 @@ public class EventsFragment extends Fragment {
             }
         });
 
-        viewEventsButton.setOnClickListener(new View.OnClickListener() {
+        /* viewEventsButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // start a fragment transaction to navigate to EventListFragment
             }
         });
+
+         */
         return root;
     }
 
