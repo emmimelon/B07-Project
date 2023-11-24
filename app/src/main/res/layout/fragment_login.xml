@@ -21,18 +21,18 @@
         app:layout_constraintVertical_bias="0.082" />
 
     <TextView
-        android:id="@+id/utoridlogin"
+        android:id="@+id/emaillogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:text="UTORID"
+        android:text="UOFT Email"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.294"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_first"
+        app:layout_constraintTop_toBottomOf="@id/textview_first"
         app:layout_constraintVertical_bias="0.113" />
 
     <TextView
@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.311"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginUTORID"
+        app:layout_constraintTop_toBottomOf="@id/loginEmail"
         app:layout_constraintVertical_bias="0.053" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -58,7 +58,7 @@
         android:background="#A4A5F5"
         android:backgroundTint="#A4A5F5"
         android:text="@string/studentLogin"
-        app:layout_constraintBottom_toTopOf="@+id/loginAdminButton"
+        app:layout_constraintBottom_toTopOf="@id/loginAdminButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -82,15 +82,15 @@
         android:background="#A4A5F5"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/loginStudentButton"
+        app:layout_constraintBottom_toTopOf="@id/loginStudentButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pwlogin"
+        app:layout_constraintTop_toBottomOf="@id/pwlogin"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/loginUTORID"
+        android:id="@+id/loginEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -101,7 +101,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/utoridlogin" />
+        app:layout_constraintTop_toBottomOf="@id/emaillogin" />
     />
 
     <TextView
@@ -109,10 +109,10 @@
         android:layout_width="0dp"
         android:layout_height="38dp"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/loginStudentButton"
+        app:layout_constraintBottom_toTopOf="@id/loginStudentButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
+        app:layout_constraintTop_toBottomOf="@id/loginPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
