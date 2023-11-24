@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class EventsFragment extends Fragment {
 
     private FragmentEventsBinding binding;
@@ -90,9 +92,14 @@ public class EventsFragment extends Fragment {
         String location = eventLocation.getText().toString();
         int limit = Integer.parseInt(participationLimit.getText().toString());
 
+        // set up the basic information for each event
         ref.child("Date").setValue(date);
         ref.child("Description").setValue(description);
         ref.child("Location").setValue(location);
         ref.child("Participation Limit").setValue(limit);
+
+        // initialize Registered Users and Reviews
+        ref.child("Registered Users").setValue(new HashMap<String, Object>());
+        ref.child("Reviews").setValue(new HashMap<String, Object>());
     }
 }
