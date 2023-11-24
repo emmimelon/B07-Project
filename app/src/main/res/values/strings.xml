@@ -77,6 +77,9 @@
     <string name="description">Description</string>
     <string name="title_required">Title (Required)</string>
     <string name="submit">Submit</string>
+
     <string name="announcement_title">Announcement Title</string>
     <string name="announcement_description">Announcement Description</string>
+
+    <string name="view_all_events_button">View all events</string>
 </resources>

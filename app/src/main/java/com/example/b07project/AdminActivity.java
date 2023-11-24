@@ -46,7 +46,8 @@ public class AdminActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_complaints, R.id.navigation_events, R.id.navigation_admin_announcements)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_admin);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_admin);
+        NavController navController = navHostFragment.getNavController();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.adminNavView, navController);
     }
