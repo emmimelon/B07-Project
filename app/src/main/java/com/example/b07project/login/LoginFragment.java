@@ -38,8 +38,7 @@ public class LoginFragment extends Fragment {
     private DatabaseReference ref;
     private FirebaseAuth mAuth;
     EditText loginInputEmail, loginInputPassword;
-    Button loginStudentBtn;
-    Button loginAdminBtn;
+    Button loginBtn;
     View root;
     boolean isFound;
 
@@ -59,84 +58,52 @@ public class LoginFragment extends Fragment {
         db = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
         loginInputEmail = root.findViewById(R.id.loginEmail);
         loginInputPassword = root.findViewById(R.id.loginPassword);
-        loginStudentBtn = root.findViewById(R.id.loginStudentButton);
-        loginAdminBtn = root.findViewById(R.id.loginAdminButton);
+        loginBtn = root.findViewById(R.id.loginButton);
 
-        loginStudentBtn.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = loginInputEmail.getText().toString();
                 String loginPassword = loginInputPassword.getText().toString();
-                isFound = false;
-                mAuth.signInWithEmailAndPassword(email, loginPassword)
-                        .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()){
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    ref = db.getReference("Users").child(user.getUid());
-                                    ref.addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            isFound = snapshot.child("Type").getValue().equals("Student");
-                                            if (isFound == true){
-                                                startActivity(new Intent(getActivity(), MainActivity.class));
+                if (email.equals("") || loginPassword.equals("")){
+                    detailsPlease();
+                }
+                else{
+                    mAuth.signInWithEmailAndPassword(email, loginPassword)
+                            .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()){
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        ref = db.getReference("Users").child(user.getUid());
+                                        ref.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                if (snapshot.exists()){
+                                                    if (snapshot.child("Type").getValue().equals("Student")){
+                                                        startActivity(new Intent(getActivity(), MainActivity.class));
+                                                    }
+                                                    else {
+                                                        startActivity(new Intent(getActivity(), AdminActivity.class));
+                                                    }
+                                                }
+                                                else{
+                                                    setOutputText();
+                                                }
                                             }
-                                            else{
-                                                setOutputText();
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
                                             }
-                                        }
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-
-                                        }
-                                    });
+                                        });
+                                    }
+                                    else {
+                                        errorMessage();
+                                    }
                                 }
-                                else {
-                                    errorMessage();
-                                }
-                            }
-                        });
+                            });
+                }
 
-            }
-        });
-
-        loginAdminBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = loginInputEmail.getText().toString();
-                String loginPassword = loginInputPassword.getText().toString();
-                isFound = false;
-                mAuth.signInWithEmailAndPassword(email, loginPassword)
-                        .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()){
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    ref = db.getReference("Users").child(user.getUid());
-                                    ref.addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            isFound = snapshot.child("Type").getValue().equals("Admin");
-                                            if (isFound == true){
-                                                startActivity(new Intent(getActivity(), AdminActivity.class));
-                                            }
-                                            else{
-                                                setOutputText();
-                                            }
-                                        }
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-
-                                        }
-                                    });
-
-                                }
-                                else {
-                                    errorMessage();
-                                }
-                            }
-                        });
             }
         });
 
@@ -150,6 +117,10 @@ public class LoginFragment extends Fragment {
 
     private void errorMessage() {
         TextView output = (TextView) root.findViewById(R.id.output2);
-        output.setText("Incorrect password or user type.");
+        output.setText("Incorrect password.");
+    }
+    private void detailsPlease() {
+        TextView output = (TextView) root.findViewById(R.id.output2);
+        output.setText("Please fill in your user details.");
     }
 }
