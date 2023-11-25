@@ -10,7 +10,10 @@
     <color name="uoftBlueLight">#FF5CA6FF</color>
     <color name="uoftBlue">#25355A</color>
     <color name="uoftBlueVariant">#FF13144A</color>
-    <color name="uoftTealLight">#FF1BD8D8</color>
+    <color name="uoftTealLight">#6FCEDB</color>
     <color name="uoftTeal">#007FA3</color>
     <color name="uoftTealVariant">#FF007681</color>
+    <color name="darkbg">#232221</color>
+    <color name="error">#FF3232</color>
+    <color name="uoftGray">#F2F4F7</color>
 </resources>
