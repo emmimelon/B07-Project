@@ -4,17 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.b07project.R;
-import com.example.b07project.login.LoginFragment;
+import com.example.b07project.login.LoginView;
 import com.example.b07project.signup.SignUpFragment;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -36,7 +32,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 /*goLogin.setVisibility(View.GONE);
                 goSignup.setVisibility(View.GONE);
                  */
-                Fragment loginFragment = new LoginFragment();
+                Fragment loginFragment = new LoginView();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.welcomeContainer, loginFragment).commit();
             }
