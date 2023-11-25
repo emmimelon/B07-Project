@@ -1,4 +1,4 @@
-package com.example.b07project.ui.adminannouncements;
+package com.example.b07project.ui.announcements.create;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class AdminAnnouncementsFragment extends Fragment {
+public class CreateAnnouncementsFragment extends Fragment {
 
     EditText inputAnnouncementsTitle, inputAnnouncementDescription;
     Button btnSubmitAnnouncement;

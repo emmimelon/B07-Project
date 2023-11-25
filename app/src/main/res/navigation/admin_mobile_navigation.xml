@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_admin_announcements"
-        android:name="com.example.b07project.ui.adminannouncements.AdminAnnouncementsFragment"
+        android:name="com.example.b07project.ui.announcements.create.CreateAnnouncementsFragment"
         android:label="Announcements"
         tools:layout="@layout/fragment_admin_announcements" />
 
