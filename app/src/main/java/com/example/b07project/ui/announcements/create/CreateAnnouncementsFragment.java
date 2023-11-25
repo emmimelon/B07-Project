@@ -1,5 +1,10 @@
 package com.example.b07project.ui.announcements.create;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +40,6 @@ public class CreateAnnouncementsFragment extends Fragment {
         binding = FragmentAdminAnnouncementsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String userFullName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
@@ -53,7 +57,9 @@ public class CreateAnnouncementsFragment extends Fragment {
                     toast = Toast.makeText(getActivity(), "Please enter a title", Toast.LENGTH_LONG);
                     toast.show();
                 } else {
-                    ref = firebaseDatabase.getReference("Announcements").child(id);
+                    DateFormat df = new SimpleDateFormat("yyyy,MM,dd,HH,mm,ss");
+                    String date = df.format(Calendar.getInstance().getTime());
+                    ref = firebaseDatabase.getReference("Announcements").child(date);
                     ref.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
