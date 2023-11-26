@@ -1,8 +1,4 @@
-package com.example.b07project.ui.events;
-
-import com.example.b07project.objects.User;
-
-import java.util.ArrayList;
+package com.example.b07project.ui.events.userEvents;
 
 public class EventsModel {
     String eventName, eventLocation, eventDate, eventDescription;

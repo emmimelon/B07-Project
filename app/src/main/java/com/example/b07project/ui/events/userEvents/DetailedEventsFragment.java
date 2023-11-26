@@ -1,4 +1,4 @@
-package com.example.b07project.ui.events;
+package com.example.b07project.ui.events.userEvents;
 
 import android.os.Bundle;
 
@@ -13,9 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.b07project.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -70,6 +72,7 @@ public class DetailedEventsFragment extends Fragment {
 
         db = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
         ref = db.getReference("Events").child(eventName);
+        userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
 
         eventBackButton = getActivity().findViewById(R.id.eventBackButton);
@@ -89,12 +92,22 @@ public class DetailedEventsFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         eventRSVP = new ArrayList<>();
                         for(DataSnapshot child : snapshot.child("Registered Users").getChildren()){
-                            eventRSVP.add(child.getValue().toString());
+                            eventRSVP.add(child.getKey().toString());
                         }
-                        eventLimit = Integer.parseInt(snapshot.child("Participation Limit").toString());
+                        eventLimit = Integer.parseInt(snapshot.child("Participation Limit").getValue().toString());
 
-                        if (eventRSVP.size() >= eventLimit){
-
+                        if (eventRSVP.contains(userName)) {
+                            Toast.makeText(getContext(), userName + " is already registered",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        else if (eventRSVP.size() >= eventLimit){
+                            Toast.makeText(getContext(), "Event full",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            ref.child("Registered Users").child(userName).setValue("true");
+                            Toast.makeText(getContext(), "Successfully signed up",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
 

@@ -1,99 +1,106 @@
 package com.example.b07project.ui.events;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.b07project.R;
-
 import com.example.b07project.databinding.FragmentEventsBinding;
-import com.example.b07project.login.LoginFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
+public class EventsFragment extends Fragment {
 
-public class EventsFragment extends Fragment implements EventRVInterface{
-
-    private @NonNull FragmentEventsBinding binding;
-    static ArrayList<EventsModel> eventsModels = new ArrayList<>();
+    private FragmentEventsBinding binding;
     private FirebaseDatabase db;
     private DatabaseReference ref;
-    Boolean isFound;
+    private EditText eventName, eventDate, eventDescription, eventLocation, participationLimit;
+    private Button submitEventButton, viewEventsButton;
+    private View root;
 
-    public EventsFragment() {
-        // empty constructor
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        EventsViewModel eventsViewModel = new ViewModelProvider(this).get(EventsViewModel.class);
         binding = FragmentEventsBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        RecyclerView recyclerView = root.findViewById(R.id.myRecyclerView);
+        root = binding.getRoot();
 
         db = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
-        ref = db.getReference("Events");
+        eventName = root.findViewById(R.id.eventName);
+        eventDate = root.findViewById(R.id.eventDate);
+        eventDescription = root.findViewById(R.id.eventDescription);
+        eventLocation = root.findViewById(R.id.eventLocation);
+        participationLimit = root.findViewById(R.id.participationLimit);
+        submitEventButton = root.findViewById(R.id.submitEventButton);
+        viewEventsButton = root.findViewById(R.id.viewEventsButton);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        recyclerView.setAdapter(new Event_recyclerViewAdapter(getActivity().getApplicationContext(), eventsModels, this));
-
-        ref.addValueEventListener(new ValueEventListener() {
+        submitEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    String eName = snap.getKey().toString();
-                    String eLocation = snap.child("Location").getValue().toString();
-                    String eDate = snap.child("Date").getValue().toString();
-                    String eDescription = snap.child("Description").getValue().toString();
-                    int eLimit = Integer.parseInt(snap.child("Participation Limit").getValue().toString());
+            public void onClick(View v) {
+                boolean uncompleted = eventName.getText().toString().isEmpty() ||
+                        eventDate.getText().toString().isEmpty() ||
+                        eventDescription.getText().toString().isEmpty() ||
+                        eventLocation.getText().toString().isEmpty() ||
+                        participationLimit.getText().toString().isEmpty();
+                if (uncompleted) {
+                    Toast.makeText(getActivity(), "Please fill in all required fields!!!", Toast.LENGTH_SHORT).show();
+                } else {
+                    ref = db.getInstance().getReference("Events").child(eventName.getText().toString());
+                    ref.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            submitData();
+                        }
 
-                    EventsModel e = new EventsModel(eName, eLocation, eDate, eDescription);
-                    if (!eventsModels.contains(e)) {
-                        eventsModels.add(e);
-                    }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    Toast.makeText(getActivity(), "Congrats! Your event is scheduled successfully", Toast.LENGTH_SHORT).show();
                 }
             }
+        });
+
+        viewEventsButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onClick(View v) {
+                // start a fragment transaction to navigate to EventListFragment
             }
         });
 
         return root;
     }
 
-    @Override
-    public void onItemClick(int position) {
-        String name = eventsModels.get(position).getEventName();
-        String location = eventsModels.get(position).getEventLocation();
-        String date = eventsModels.get(position).getEventDate();
-        String desc = eventsModels.get(position).getEventDescription();
+    private void submitData() {
+        String date = eventDate.getText().toString();
+        String description = eventDescription.getText().toString();
+        String location = eventLocation.getText().toString();
+        int limit = Integer.parseInt(participationLimit.getText().toString());
 
-        this.getParentFragmentManager().beginTransaction().hide(this).commit();
-        FragmentTransaction fragTrans = getActivity().getSupportFragmentManager().beginTransaction();
-        fragTrans.add(R.id.container, new DetailedEventsFragment(name, location, date, desc, this)).commit();
+        // set up the basic information for each event
+        ref.child("Date").setValue(date);
+        ref.child("Description").setValue(description);
+        ref.child("Location").setValue(location);
+        ref.child("Participation Limit").setValue(limit);
 
-
+        // initialize Registered Users and Reviews
+        ref.child("Registered Users").setValue(new HashMap<String, Object>());
+        ref.child("Reviews").setValue(new HashMap<String, Object>());
     }
 }

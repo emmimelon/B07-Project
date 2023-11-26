@@ -1,4 +1,4 @@
-package com.example.b07project.ui.events;
+package com.example.b07project.ui.events.userEvents;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,6 @@ import com.example.b07project.R;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Event_recyclerViewAdapter extends RecyclerView.Adapter<Event_recyclerViewAdapter.myViewHolder>{

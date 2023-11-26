@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.adminannouncements.AdminAnnouncementsFragment">
+    tools:context=".ui.announcements.create.CreateAnnouncementsFragment">
 
     <TextView
         android:id="@+id/createAdminAnnouncementsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="64dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/create_announcements"
-        android:textColor="#03A9F4"
+        android:textColor="@color/uoftBlue"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,13 +21,14 @@
 
     <EditText
         android:id="@+id/editAnnouncementTitle"
-        android:layout_width="0dp"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="Title (Required)"
+        android:hint="@string/title_required"
+        android:importantForAutofill="no"
         android:inputType="text"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,15 +37,16 @@
 
     <EditText
         android:id="@+id/editAnnouncementDescription"
-        android:layout_width="378dp"
-        android:layout_height="112dp"
+        android:layout_width="375dp"
+        android:layout_height="243dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:gravity="bottom|left"
-        android:hint="Description"
+        android:gravity="bottom|start"
+        android:hint="@string/description"
+        android:importantForAutofill="no"
         android:inputType="textMultiLine"
-        android:maxLines="8"
+        android:maxLines="10"
         android:scrollbars="vertical"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,15 +55,27 @@
 
     <Button
         android:id="@+id/buttonSubmitAnnouncement"
-        android:layout_width="339dp"
+        android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_marginStart="36dp"
+        android:layout_marginTop="176dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="75dp"
-        android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/submit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editAnnouncementDescription" />
+
+    <ImageButton
+        android:id="@+id/createAnnouncementBackButton"
+        android:layout_width="45dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#FFFFFF"
+        android:src="@drawable/baseline_arrow_back_36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/navigation_events"
-        android:name="com.example.b07project.ui.events.EventsFragment"
+        android:name="com.example.b07project.ui.events.userEvents.UserEventsFragment"
         android:label="Events"
         tools:layout="@layout/fragment_events" />
 
@@ -20,7 +20,8 @@
         android:id="@+id/navigation_complaints"
         android:name="com.example.b07project.ui.complaints.ComplaintsFragment"
         android:label="Complaints"
-        tools:layout="@layout/fragment_complaints" />
+        tools:layout="@layout/fragment_complaints" >
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_post"
