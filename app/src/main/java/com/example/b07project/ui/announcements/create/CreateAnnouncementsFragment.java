@@ -57,14 +57,16 @@ public class CreateAnnouncementsFragment extends Fragment {
                     toast = Toast.makeText(getActivity(), "Please enter a title", Toast.LENGTH_LONG);
                     toast.show();
                 } else {
+                    //Date format: year,month,day,hour,minute,second
                     DateFormat df = new SimpleDateFormat("yyyy,MM,dd,HH,mm,ss");
                     String date = df.format(Calendar.getInstance().getTime());
                     ref = firebaseDatabase.getReference("Announcements").child(date);
                     ref.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            ref.child(inputTitle).setValue(inputDescription);
-                            ref.child("createdBy").setValue(userFullName);
+                            ref.child("title").setValue(inputTitle);
+                            ref.child("description").setValue(inputDescription);
+                            ref.child("creator").setValue(userFullName);
                         }
 
                         @Override
