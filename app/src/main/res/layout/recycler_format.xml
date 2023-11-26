@@ -8,21 +8,29 @@
     <androidx.cardview.widget.CardView
         android:layout_width="409dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="@color/uoftBlue"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="157dp"
-            android:backgroundTint="#673AB7">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/eventName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="40dp"
                 app:layout_constraintBottom_toTopOf="@+id/eventLocation"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -32,11 +40,13 @@
                 android:id="@+id/eventLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="28dp"
+                android:layout_marginBottom="8dp"
                 android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="20dp"
                 app:layout_constraintBottom_toTopOf="@+id/eventDate"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -45,6 +55,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
