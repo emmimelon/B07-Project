@@ -1,13 +1,20 @@
 package com.example.b07project.ui.events;
 
-public class EventsModel {
-    String eventName, eventLocation, eventDate;
+import com.example.b07project.objects.User;
 
-    public EventsModel(String eventName, String eventLocation, String eventDate) {
+import java.util.ArrayList;
+
+public class EventsModel {
+    String eventName, eventLocation, eventDate, eventDescription;
+
+    public EventsModel(String eventName, String eventLocation, String eventDate,
+                       String eventDescription) {
         this.eventName = eventName;
         this.eventLocation = eventLocation;
         this.eventDate = eventDate;
+        this.eventDescription = eventDescription;
     }
+
 
     public String getEventName() {
         return eventName;
@@ -20,6 +27,8 @@ public class EventsModel {
     public String getEventDate() {
         return eventDate;
     }
+    public String getEventDescription() {return eventDescription;}
+
 
     @Override
     public boolean equals(Object obj){
@@ -33,4 +42,5 @@ public class EventsModel {
         }
         return false;
     }
+
 }
