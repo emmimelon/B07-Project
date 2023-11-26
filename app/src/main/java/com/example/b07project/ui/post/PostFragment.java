@@ -53,7 +53,7 @@ import nl.dionsegijn.konfetti.xml.KonfettiView;
 public class PostFragment extends Fragment{
 
     private FragmentPostBinding binding;
-    LinearLayout gpaSelect, programs;
+    LinearLayout gpaSelect;
     LinearLayout postSuccess, postFail;
     AutoCompleteTextView autoPostChoice;
     String[] postCategories = {"Computer Science Major/Specialist", "Computer Science Minor",
@@ -132,6 +132,7 @@ public class PostFragment extends Fragment{
                         if (i < requiredCourses.length){
                             courseCode.setText(requiredCourses[i]);
                             Double gpa = (Double) parent.getItemAtPosition(pos);
+                            Toast.makeText(getActivity(), "Course: "+ requiredCourses[i] + " GPA: " +gpa, Toast.LENGTH_SHORT).show();
                             if (gpa == 0.0){
                                 postFail.setVisibility(View.VISIBLE);
                                 gpaSelect.setVisibility(View.GONE);

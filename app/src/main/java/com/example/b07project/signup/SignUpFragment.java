@@ -18,12 +18,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.b07project.AdminActivity;
 import com.example.b07project.MainActivity;
 import com.example.b07project.R;
 import com.example.b07project.WelcomeActivity;
 import com.example.b07project.databinding.FragmentSignupBinding;
+import com.example.b07project.login.LoginView;
 import com.example.b07project.objects.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -40,13 +42,12 @@ import com.google.firebase.database.ValueEventListener;
 public class SignUpFragment extends Fragment {
     private static final String TAG = "MyApp/";
     private FragmentSignupBinding binding;
-    private FirebaseDatabase db;
-    private DatabaseReference ref;
     EditText inputPassword, inputName, inputEmail;
     Button createButton;
     RadioButton accSelect;
     View root;
     String email,password,type,name;
+    TextView loginInstead;
     private boolean justCreated = false;
     private FirebaseAuth mAuth;
 
@@ -62,27 +63,34 @@ public class SignUpFragment extends Fragment {
         if(currentUser != null){
             currentUser.reload();
         }
-        RadioButton selectStudent = root.findViewById(R.id.selectStudent);
-        RadioButton selectAdmin = root.findViewById(R.id.selectAdmin);
+
         RadioGroup selection = root.findViewById(R.id.radioGroup);
-        String empty = "";
         type = "";
         selection.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 int id = selection.getCheckedRadioButtonId();
                 if (id > 0){
-                    accSelect = (RadioButton) root.findViewById(id);
+                    accSelect = root.findViewById(id);
                     type = accSelect.getText().toString();
                 }
             }
         });
 
-        db = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
         inputPassword = root.findViewById(R.id.enterPassword);
         inputName = root.findViewById(R.id.enterName);
         inputEmail = root.findViewById(R.id.enterEmail);
         createButton = root.findViewById(R.id.signupButton);
+        loginInstead = root.findViewById(R.id.loginInstead);
+        loginInstead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment loginFragment = new LoginView();
+                createButton.setVisibility(View.GONE);
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.signupLayout, loginFragment).commit();
+            }
+        });
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +100,6 @@ public class SignUpFragment extends Fragment {
                 if(password.equals("")){
                 }
                 if (password.equals("") || name.equals("") || email.equals("") || type.equals("")){
-                    System.out.println("???" + password + "ahhhhh");
                     setOutputTextEmpty();
                 }
                 else if (justCreated == false){
@@ -105,7 +112,7 @@ public class SignUpFragment extends Fragment {
                                         Log.d(TAG, "createUserWithEmail: success");
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                                .setDisplayName(name).setPhotoUri(Uri.parse("https://upload.wikimedia.org/wikipedia/commons/b/b5/Windows_10_Default_Profile_Picture.svg")).build();
+                                                .setDisplayName(name).build();
                                         user.updateProfile(profileUpdates)
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
@@ -114,7 +121,7 @@ public class SignUpFragment extends Fragment {
                                                             Log.d(TAG, "User profile updated.");
                                                             User ourUser = new User(user, type);
                                                             ourUser.addNewUser();
-                                                            if (type == "Admin"){
+                                                            if (type.equals("Admin")){
                                                                 startActivity(new Intent(getActivity(), AdminActivity.class));
                                                             }
                                                             else {
@@ -139,12 +146,12 @@ public class SignUpFragment extends Fragment {
 
     private void setOutputTextEmpty()
     {
-        TextView outputMsg = (TextView) root.findViewById(R.id.outputMessage);
+        TextView outputMsg = root.findViewById(R.id.outputMessage);
         outputMsg.setText( "Please fill in user details.");
     }
     private void setOutputTextExists()
     {
-        TextView outputMsg = (TextView) root.findViewById(R.id.outputMessage);
+        TextView outputMsg = root.findViewById(R.id.outputMessage);
         outputMsg.setText("Authentication failed or user already exists.");
     }
 }

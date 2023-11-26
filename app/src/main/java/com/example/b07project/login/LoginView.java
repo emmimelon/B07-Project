@@ -11,18 +11,20 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.b07project.AdminActivity;
 import com.example.b07project.MainActivity;
 import com.example.b07project.R;
 import com.example.b07project.databinding.FragmentLoginBinding;
+import com.example.b07project.signup.SignUpFragment;
 
 public class LoginView extends Fragment {
 
     private @NonNull FragmentLoginBinding binding;
     LoginPresenter presenter;
     EditText loginInputEmail, loginInputPassword;
-    TextView output;
+    TextView output, signUpInstead;
     Button loginBtn;
     View root;
 
@@ -37,7 +39,7 @@ public class LoginView extends Fragment {
         loginInputEmail = root.findViewById(R.id.loginEmail);
         loginInputPassword = root.findViewById(R.id.loginPassword);
         loginBtn = root.findViewById(R.id.loginButton);
-
+        loginBtn.setVisibility(View.VISIBLE);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,7 +48,16 @@ public class LoginView extends Fragment {
                 presenter.checkDB(email, loginPassword);
             }
         });
-
+        signUpInstead = root.findViewById(R.id.signUPInstead);
+        signUpInstead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment signupFragment = new SignUpFragment();
+                loginBtn.setVisibility(View.GONE);
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.loginLayout, signupFragment).commit();
+            }
+        });
         return root;
     }
     void setResultText(String resultText){
@@ -59,4 +70,5 @@ public class LoginView extends Fragment {
     void enterAdminApp(){
         startActivity(new Intent(getActivity(), AdminActivity.class));
     }
+
 }

@@ -53,6 +53,8 @@
     <string name="password">
         Enter your password.
     </string>
+    <string name="signUpInstead">No Account? <u>Click here to sign-up instead!</u></string>
+    <string name="loginInstead">Have an Account? <u>Click here to log-in instead!</u></string>
     <string name="title_activity_admin">AdminActivity</string>
     <string name="complaint_name">Name</string>
     <string name="complaint_title">This is the complaint title</string>
