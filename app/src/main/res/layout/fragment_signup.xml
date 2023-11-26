@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkbg">
+    android:background="@color/darkbg"
+    android:id="@+id/signupLayout"
+    >
 
     <TextView
         android:id="@+id/outputMessage"
@@ -130,6 +132,13 @@
                 android:textColor="@color/uoftGray"
                 android:textSize="16sp"></RadioButton>
         </RadioGroup>
+
+        <TextView
+            android:id="@+id/loginInstead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loginInstead"
+            android:textColor="@color/uoftBlueLight" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
