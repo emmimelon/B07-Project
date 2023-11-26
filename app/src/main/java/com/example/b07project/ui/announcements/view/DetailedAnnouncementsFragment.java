@@ -51,8 +51,8 @@ public class DetailedAnnouncementsFragment extends Fragment {
         dateText = getActivity().findViewById(R.id.adminAnnouncementDate);
         dateText.setText(date);
         descriptionText = getActivity().findViewById(R.id.adminAnnouncementDescription);
-        descriptionText.setText(title);
-        announcementBackButton = getActivity().findViewById(R.id.admin_announcements_back_button);
+        descriptionText.setText(description);
+        announcementBackButton = getActivity().findViewById(R.id.detailed_announcements_back_button);
         announcementBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

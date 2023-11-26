@@ -13,11 +13,11 @@
         android:layout_height="wrap_content"
         android:autoSizeTextType="uniform"
         android:fontFamily="sans-serif"
-        android:padding="10dp"
         android:lines="1"
+        android:padding="10dp"
         android:text="@string/announcement_title"
         android:textColor="@color/black"
-        android:textSize="40sp" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/adminAnnouncementCreator"
@@ -49,12 +49,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/adminAnnouncementDate"
         android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:paddingTop="10dp"
         android:text="@string/announcement_description"
         android:textColor="@color/black" />
 
     <Button
-        android:id="@+id/admin_announcements_back_button"
+        android:id="@+id/detailed_announcements_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.b07project.R;
 import com.example.b07project.databinding.FragmentAdminAnnouncementsBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,11 +32,16 @@ public class CreateAnnouncementsFragment extends Fragment {
 
     EditText inputAnnouncementsTitle, inputAnnouncementDescription;
     Button btnSubmitAnnouncement;
+    ImageButton backButton;
     private FragmentAdminAnnouncementsBinding binding;
     private DatabaseReference ref;
     private FirebaseDatabase firebaseDatabase;
     private Toast toast;
+    private Fragment frag;
 
+    public CreateAnnouncementsFragment(Fragment frag){
+        this.frag = frag;
+    }
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentAdminAnnouncementsBinding.inflate(inflater, container, false);
@@ -46,6 +53,7 @@ public class CreateAnnouncementsFragment extends Fragment {
         inputAnnouncementsTitle = root.findViewById(R.id.editAnnouncementTitle);
         inputAnnouncementDescription = root.findViewById(R.id.editAnnouncementDescription);
         btnSubmitAnnouncement = root.findViewById(R.id.buttonSubmitAnnouncement);
+        backButton = root.findViewById((R.id.createAnnouncementBackButton));
 
         btnSubmitAnnouncement.setOnClickListener(new View.OnClickListener() {
 
@@ -82,6 +90,13 @@ public class CreateAnnouncementsFragment extends Fragment {
                 }
             }
         });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transition(frag);
+            }
+        });
+        showBottomBar(false);
         return root;
     }
 
@@ -89,5 +104,18 @@ public class CreateAnnouncementsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+    private void transition(Fragment frag) {
+        showBottomBar(true);
+        frag.getParentFragmentManager().beginTransaction().show(frag).commit();
+        this.getParentFragmentManager().beginTransaction().remove(this).commit();
+    }
+    private void showBottomBar(boolean show) {
+        BottomNavigationView adminNavView = getActivity().findViewById(R.id.admin_nav_view);
+        if (show) {
+            adminNavView.setVisibility(View.VISIBLE);
+        } else {
+            adminNavView.setVisibility(View.GONE);
+        }
     }
 }
