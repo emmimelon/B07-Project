@@ -10,24 +10,29 @@
         android:id="@+id/tvCreateEventGuide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="33dp"
         android:layout_marginTop="51dp"
+        android:layout_marginEnd="8dp"
+        android:layout_toStartOf="@+id/addEventButton"
         android:fontFamily="@font/amaranth"
         android:text="@string/admin_schedule_guide_text"
         android:textColor="@color/uoftBlue"
-        android:textSize="21sp" />
+        android:textSize="18sp" />
 
+    <!-- FloatingActionButton for adding new events -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/adminEventsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="621dp"
+        android:layout_height="518dp"
         android:layout_below="@id/addEventButton"
-        android:layout_marginTop="21dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="33dp"
         android:padding="16dp"
         android:scrollbars="vertical" />
 
-    <!-- FloatingActionButton for adding new events -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addEventButton"
         android:layout_width="wrap_content"
@@ -36,7 +41,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="34dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="33dp"
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/schedule_an_event_here_text"
         android:src="@android:drawable/ic_input_add" />
