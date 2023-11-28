@@ -43,9 +43,7 @@ public class LoginView extends Fragment {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = loginInputEmail.getText().toString();
-                String loginPassword = loginInputPassword.getText().toString();
-                presenter.checkDB(email, loginPassword);
+                presenter.checkDB();
             }
         });
         signUpInstead = root.findViewById(R.id.signUPInstead);
@@ -60,15 +58,23 @@ public class LoginView extends Fragment {
         });
         return root;
     }
-    void setResultText(String resultText){
+    public void setResultText(String resultText){
         output = root.findViewById(R.id.output2);
         output.setText(resultText);
     }
-    void enterStudentApp() {
+    public void enterStudentApp() {
         startActivity(new Intent(getActivity(), MainActivity.class));
     }
-    void enterAdminApp(){
+    public void enterAdminApp(){
         startActivity(new Intent(getActivity(), AdminActivity.class));
+    }
+    public String getEmail(){
+        String email = loginInputEmail.getText().toString();
+        return email;
+    }
+    public String getPassword(){
+        String loginPassword = loginInputPassword.getText().toString();
+        return loginPassword;
     }
 
 }

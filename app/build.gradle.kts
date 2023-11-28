@@ -51,6 +51,7 @@ dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-all:1.10.19")
     implementation("androidx.recyclerview:recyclerview:1.1.0")
     implementation("nl.dionsegijn:konfetti-xml:2.0.3")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
