@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.InputType;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,26 +53,34 @@ import nl.dionsegijn.konfetti.xml.KonfettiView;
 public class PostFragment extends Fragment{
 
     private FragmentPostBinding binding;
-    AutoCompleteTextView autoCompleteTextView;
-    ArrayAdapter<String> arrayAdapter;
     LinearLayout gpaSelect;
     LinearLayout postSuccess, postFail;
-
+    AutoCompleteTextView autoPostChoice;
+    String[] postCategories = {"Computer Science Major/Specialist", "Computer Science Minor",
+            "Mathematics Specialist", "Mathematics Major", "Statistics Specialist", "Statistics Major"};
+    Boolean check;
     TextView courseCode;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity() ,
+                R.layout.post_choices, postCategories);
+        autoPostChoice.setAdapter(arrayAdapter);
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         binding = FragmentPostBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        autoPostChoice = root.findViewById(R.id.autoPostChoice);
+        autoPostChoice.setInputType(InputType.TYPE_NULL);
         gpaSelect = (LinearLayout) root.findViewById(R.id.selectGPA);
         gpaSelect.setVisibility(View.GONE);
         postSuccess = (LinearLayout) root.findViewById(R.id.postSuccess);
         postFail = (LinearLayout) root.findViewById(R.id.postFail);
         postSuccess.setVisibility(View.GONE);
         postFail.setVisibility(View.GONE);
-
-        String[] postCategories = {"Computer Science Major/Specialist", "Computer Science Minor",
-                "Mathematics Specialist", "Mathematics Major", "Statistics Specialist", "Statistics Major"};
         Double[] possibleGPA = {0.0, 0.7, 1.0, 1.3, 1.7, 2.0, 2.3, 2.7, 3.0, 3.3, 3.7, 4.0};
 
         Dictionary<String,String[]> reqCourseDictionary = new Hashtable<>();
@@ -89,13 +99,17 @@ public class PostFragment extends Fragment{
         Double[] thresholds = {2.5, 0.7, 2.5, 2.0, 2.5, 2.3};
 
         courseCode = (TextView) root.findViewById(R.id.courseCode);
-        autoCompleteTextView = root.findViewById(R.id.autoPostChoice);
-        arrayAdapter = new ArrayAdapter<String>(getActivity() ,
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity() ,
                 R.layout.post_choices, postCategories);
-        autoCompleteTextView.setAdapter(arrayAdapter);
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        autoPostChoice.setAdapter(arrayAdapter);
+        check = true;
+
+        autoPostChoice.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity() ,
+                        R.layout.post_choices, postCategories);
+                autoPostChoice.setAdapter(arrayAdapter);
                 postSuccess.setVisibility(View.GONE);
                 postFail.setVisibility(View.GONE);
                 String items = (String) parent.getItemAtPosition(position);
@@ -104,7 +118,7 @@ public class PostFragment extends Fragment{
                 String[] requiredCourses = reqCourseDictionary.get(items);
                 AutoCompleteTextView autoGPA = root.findViewById(R.id.autoGPAChoice);
                 ArrayAdapter<Double> arrayAdapterGPA = new ArrayAdapter<>(getActivity() ,
-                        R.layout.post_choices, possibleGPA);
+                        R.layout.gpa_choices, possibleGPA);
                 autoGPA.setAdapter(arrayAdapterGPA);
                 courseCode.setText(requiredCourses[0]);
                 Double[] gpaAcrossCourses = new Double[requiredCourses.length];
@@ -118,6 +132,7 @@ public class PostFragment extends Fragment{
                         if (i < requiredCourses.length){
                             courseCode.setText(requiredCourses[i]);
                             Double gpa = (Double) parent.getItemAtPosition(pos);
+                            Toast.makeText(getActivity(), "Course: "+ requiredCourses[i] + " GPA: " +gpa, Toast.LENGTH_SHORT).show();
                             if (gpa == 0.0){
                                 postFail.setVisibility(View.VISIBLE);
                                 gpaSelect.setVisibility(View.GONE);
@@ -194,5 +209,6 @@ public class PostFragment extends Fragment{
         super.onDestroyView();
         binding = null;
     }
+
 
 }

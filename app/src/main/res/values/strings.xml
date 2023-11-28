@@ -53,6 +53,8 @@
     <string name="password">
         Enter your password.
     </string>
+    <string name="signUpInstead">No Account? <u>Click here to sign-up instead!</u></string>
+    <string name="loginInstead">Have an Account? <u>Click here to log-in instead!</u></string>
     <string name="title_activity_admin">AdminActivity</string>
     <string name="complaint_name">Name</string>
     <string name="complaint_title">This is the complaint title</string>
@@ -77,6 +79,10 @@
     <string name="description">Description</string>
     <string name="title_required">Title (Required)</string>
     <string name="submit">Submit</string>
+
+    <string name="announcement_title">Announcement Title</string>
+    <string name="announcement_description">Announcement Description</string>
+
     <string name="view_all_events_button">View all events</string>
     <string name="schedule_an_event_here_text">Schedule an Event Here!</string>
     <string name="admin_schedule_guide_text"><![CDATA[Hi, you can create an event here ->]]></string>
