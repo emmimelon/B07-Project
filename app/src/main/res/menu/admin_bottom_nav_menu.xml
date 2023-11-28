@@ -6,7 +6,7 @@
         android:title="Announcements" />
 
     <item
-        android:id="@+id/navigation_events"
+        android:id="@+id/navigation_admin_events"
         android:icon="@drawable/ic_event_black_24dp"
         android:title="Events" />
 
