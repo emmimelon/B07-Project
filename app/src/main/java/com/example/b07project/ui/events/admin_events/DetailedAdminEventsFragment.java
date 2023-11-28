@@ -81,7 +81,6 @@ public class DetailedAdminEventsFragment extends Fragment {
 
             }
         });
-        showBottomBar(false);
 
         seeRatings = getActivity().findViewById(R.id.eventRatings);
         seeRatings.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +89,7 @@ public class DetailedAdminEventsFragment extends Fragment {
 
             }
         });
+        showBottomBar(false);
     }
 
     private void transition(Fragment frag) {
