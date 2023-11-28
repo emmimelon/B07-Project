@@ -70,7 +70,8 @@ public class DetailedEventsFragment extends Fragment {
         TextView desc = getActivity().findViewById(R.id.event_Desc);
         desc.setText(eventDescription);
 
-        db = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
+        db = FirebaseDatabase.getInstance(
+                "https://b07-project-c5222-default-rtdb.firebaseio.com/");
         ref = db.getReference("Events").child(eventName);
         userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
@@ -91,10 +92,12 @@ public class DetailedEventsFragment extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         eventRSVP = new ArrayList<>();
-                        for(DataSnapshot child : snapshot.child("Registered Users").getChildren()){
+                        for(DataSnapshot child : snapshot.child(
+                                "Registered Users").getChildren()){
                             eventRSVP.add(child.getKey().toString());
                         }
-                        eventLimit = Integer.parseInt(snapshot.child("Participation Limit").getValue().toString());
+                        eventLimit = Integer.parseInt(snapshot.child(
+                                "Participation Limit").getValue().toString());
 
                         if (eventRSVP.contains(userName)) {
                             Toast.makeText(getContext(), userName + " is already registered",

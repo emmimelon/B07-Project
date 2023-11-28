@@ -31,7 +31,6 @@ import java.util.ArrayList;
 
 public class UserEventsFragment extends Fragment implements EventRVInterface {
 
-    private @NonNull FragmentUserEventsBinding binding;
     static ArrayList<EventsModel> eventsModels = new ArrayList<>();
     private FirebaseDatabase db;
     private DatabaseReference ref;
@@ -49,16 +48,12 @@ public class UserEventsFragment extends Fragment implements EventRVInterface {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        binding = FragmentUserEventsBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        View view = inflater.inflate(R.layout.fragment_user_events, container, false);
 
-        RecyclerView recyclerView = root.findViewById(R.id.studentRecyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.studentRecyclerView);
 
         db = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
         ref = db.getReference("Events");
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        recyclerView.setAdapter(new Event_recyclerViewAdapter(getActivity().getApplicationContext(), eventsModels, this));
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -71,7 +66,29 @@ public class UserEventsFragment extends Fragment implements EventRVInterface {
 
                     EventsModel e = new EventsModel(eName, eLocation, eDate, eDescription);
                     if (!eventsModels.contains(e)) {
-                        eventsModels.add(e);
+                        int index = 0;
+                        boolean notPlaced = true;
+                        for(int i = 0; i < eventsModels.size() && notPlaced; i++){
+                            if (Integer.parseInt(eDate.substring(0,4)) > Integer.parseInt(
+                                    eventsModels.get(i).getEventDate().substring(0,4))){
+                                index = i;
+                                notPlaced = false;
+                            }
+                            else if (Integer.parseInt(eDate.substring(5, 7)) > Integer.parseInt(
+                                    eventsModels.get(i).getEventDate().substring(5, 7))){
+                                index = i;
+                                notPlaced = false;
+                            }
+                            else if (Integer.parseInt(eDate.substring(8)) > Integer.parseInt(
+                                    eventsModels.get(i).getEventDate().substring(8))){
+                                index = i;
+                                notPlaced = false;
+                            }
+                            else{
+                                index++;
+                            }
+                        }
+                        eventsModels.add(index, e);
                     }
                 }
             }
@@ -82,7 +99,10 @@ public class UserEventsFragment extends Fragment implements EventRVInterface {
             }
         });
 
-        return root;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        recyclerView.setAdapter(new Event_recyclerViewAdapter(getActivity().getApplicationContext(), eventsModels, this));
+
+        return view;
     }
 
     @Override
