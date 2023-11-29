@@ -18,7 +18,7 @@
         android:layout_toStartOf="@+id/addEventButton"
         android:fontFamily="@font/amaranth"
         android:text="@string/admin_schedule_guide_text"
-        android:textColor="@color/uoftBlue"
+        android:textColor="@color/uoftTeal"
         android:textSize="18sp" />
 
     <!-- FloatingActionButton for adding new events -->
@@ -28,7 +28,6 @@
         android:layout_height="518dp"
         android:layout_below="@id/addEventButton"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="2dp"
         android:layout_marginBottom="33dp"
         android:padding="16dp"
         android:scrollbars="vertical" />

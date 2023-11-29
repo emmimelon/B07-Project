@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/adminItemView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@color/uoftGray"
+    android:visibility="visible">
 
     <ImageView
-        android:layout_width="48dp"
-        android:layout_height="48dp"
         android:id="@+id/imageview"
-        android:layout_marginRight="10dp"
-        android:layout_centerVertical="true"/>
+        android:layout_width="42dp"
+        android:layout_height="39dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp" />
 
     <TextView
         android:id="@+id/event_name"
@@ -20,7 +22,7 @@
         android:layout_toEndOf="@+id/imageview"
         android:fontFamily="@font/amaranth"
         android:textColor="@color/uoftBlueLight"
-        android:textSize="20sp"
+        android:textSize="21sp"
         android:textStyle="bold"
         tools:text="@string/event_name_text" />
 
@@ -32,13 +34,15 @@
         android:layout_toEndOf="@+id/imageview"
         android:fontFamily="@font/amaranth"
         android:textColor="@color/uoftBlue"
+        android:textSize="16sp"
         tools:text="@string/event_date_text" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/imageview"
         android:layout_marginTop="10dp"
-        android:background="#DAD8D8"/>
+        android:background="#DAD8D8"
+        android:visibility="visible" />
 
 </RelativeLayout>
