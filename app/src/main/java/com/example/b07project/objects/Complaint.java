@@ -28,6 +28,7 @@ public class Complaint {
     }
     public void writeNewComplaint() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Complaints").child(date.toString()).child(id).child(complaintTitle).setValue(complaintDescription);
+        mDatabase.child("Complaints").child(id).child(complaintTitle).child("Date").setValue(date.toString());
+        mDatabase.child("Complaints").child(id).child(complaintTitle).child("Description").setValue(complaintDescription);
     }
 }

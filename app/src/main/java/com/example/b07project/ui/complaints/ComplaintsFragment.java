@@ -59,7 +59,7 @@ public class ComplaintsFragment extends Fragment {
                     Toast.makeText(getActivity(), "Please fill in your complaint details", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    ref = firebaseDatabase.getReference("Complaints").child(complaint.date.toString()).child(id).child(inputTitle);
+                    ref = firebaseDatabase.getReference("Complaints").child(id).child(inputTitle);
                     ref.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
