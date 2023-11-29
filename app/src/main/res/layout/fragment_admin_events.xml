@@ -28,7 +28,7 @@
         android:layout_height="518dp"
         android:layout_below="@id/addEventButton"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="33dp"
+        android:layout_marginBottom="44dp"
         android:padding="16dp"
         android:scrollbars="vertical" />
 
