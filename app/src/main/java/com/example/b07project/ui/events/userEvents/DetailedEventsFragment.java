@@ -37,6 +37,7 @@ public class DetailedEventsFragment extends Fragment {
     private FirebaseDatabase db;
     private DatabaseReference ref;
 
+
     public DetailedEventsFragment(String eventName, String eventLocation, String eventDate,
                                   String eventDescription, Fragment frag) {
         this.eventName = eventName;
@@ -70,7 +71,8 @@ public class DetailedEventsFragment extends Fragment {
         TextView desc = getActivity().findViewById(R.id.event_Desc);
         desc.setText(eventDescription);
 
-        db = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
+        db = FirebaseDatabase.getInstance(
+                "https://b07-project-c5222-default-rtdb.firebaseio.com/");
         ref = db.getReference("Events").child(eventName);
         userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
@@ -87,27 +89,34 @@ public class DetailedEventsFragment extends Fragment {
         eventResgisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 ref.addValueEventListener(new ValueEventListener() {
+                    boolean checked = false;
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         eventRSVP = new ArrayList<>();
-                        for(DataSnapshot child : snapshot.child("Registered Users").getChildren()){
+                        for(DataSnapshot child : snapshot.child(
+                                "Registered Users").getChildren()){
                             eventRSVP.add(child.getKey().toString());
                         }
-                        eventLimit = Integer.parseInt(snapshot.child("Participation Limit").getValue().toString());
+                        eventLimit = Integer.parseInt(snapshot.child(
+                                "Participation Limit").getValue().toString());
 
-                        if (eventRSVP.contains(userName)) {
+                        if (eventRSVP.contains(userName) && !checked) {
                             Toast.makeText(getContext(), userName + " is already registered",
                                     Toast.LENGTH_SHORT).show();
+                            checked = true;
                         }
-                        else if (eventRSVP.size() >= eventLimit){
+                        else if (eventRSVP.size() >= eventLimit && !checked){
                             Toast.makeText(getContext(), "Event full",
                                     Toast.LENGTH_SHORT).show();
+                            checked = true;
                         }
-                        else{
+                        else if (!checked) {
                             ref.child("Registered Users").child(userName).setValue("true");
                             Toast.makeText(getContext(), "Successfully signed up",
                                     Toast.LENGTH_SHORT).show();
+                            checked = true;
                         }
                     }
 
