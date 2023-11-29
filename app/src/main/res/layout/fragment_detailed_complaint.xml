@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.complaints.admin.DetailedComplaintFragment"
-    android:id="@+id/detailedComplaintFragment">
+    android:id="@+id/detailedComplaintFragment"
+    android:paddingTop="?attr/actionBarSize">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
