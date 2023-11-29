@@ -1,6 +1,5 @@
 package com.example.b07project.ui.events.userEvents;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,13 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.b07project.R;
-
-import com.example.b07project.databinding.FragmentEventsBinding;
 import com.example.b07project.databinding.FragmentUserEventsBinding;
-import com.example.b07project.ui.events.userEvents.DetailedEventsFragment;
-import com.example.b07project.ui.events.userEvents.EventRVInterface;
-import com.example.b07project.ui.events.userEvents.Event_recyclerViewAdapter;
-import com.example.b07project.ui.events.userEvents.EventsModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
