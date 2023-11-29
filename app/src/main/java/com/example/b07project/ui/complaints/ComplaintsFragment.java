@@ -17,6 +17,7 @@ import com.example.b07project.R;
 import com.example.b07project.databinding.FragmentComplaintsBinding;
 import com.example.b07project.objects.Complaint;
 import com.example.b07project.objects.User;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -58,7 +59,7 @@ public class ComplaintsFragment extends Fragment {
                     Toast.makeText(getActivity(), "Please fill in your complaint details", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    ref = firebaseDatabase.getReference("Complaints").child(id).child(inputTitle);
+                    ref = firebaseDatabase.getReference("Complaints").child(complaint.date.toString()).child(id).child(inputTitle);
                     ref.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
