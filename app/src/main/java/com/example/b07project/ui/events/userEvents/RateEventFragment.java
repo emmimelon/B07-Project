@@ -29,10 +29,10 @@ import java.util.ArrayList;
 
 public class RateEventFragment extends Fragment {
     private int rating;
-    private Button backButton, rateSubmit;
+    private Button rateSubmit;
     private String title, userFullName;
     private TextView eventTitle;
-    private ImageButton star1, star2, star3, star4, star5;
+    private ImageButton star1, star2, star3, star4, star5, backButton;
     private EditText feedback;
     private Fragment frag;
     private FragmentRateEventBinding binding;
@@ -89,7 +89,7 @@ public class RateEventFragment extends Fragment {
                     toast = Toast.makeText(getActivity(), "Please fill out all details", Toast.LENGTH_LONG);
                     toast.show();
                 } else {
-                    ref = db.getReference("Announcements").child(title).child("Reviews").child(userFullName);
+                    ref = db.getReference("Events").child(title).child("Reviews").child(userFullName);
                     ref.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -133,11 +133,11 @@ public class RateEventFragment extends Fragment {
         this.getParentFragmentManager().beginTransaction().remove(this).commit();
     }
     private void showBottomBar(boolean show) {
-        BottomNavigationView adminNavView = getActivity().findViewById(R.id.admin_nav_view);
+        BottomNavigationView navView = getActivity().findViewById(R.id.nav_view);
         if (show) {
-            adminNavView.setVisibility(View.VISIBLE);
+            navView.setVisibility(View.VISIBLE);
         } else {
-            adminNavView.setVisibility(View.GONE);
+            navView.setVisibility(View.GONE);
         }
     }
 }
