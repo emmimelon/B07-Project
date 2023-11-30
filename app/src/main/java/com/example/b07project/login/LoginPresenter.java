@@ -7,7 +7,9 @@ public class LoginPresenter {
         this.model = model;
         this.view = view;
     }
-    public void checkDB(String email, String password) {
+    public void checkDB() {
+        String password = view.getPassword();
+        String email = view.getEmail();
         if (email.equals("") || password.equals("")){
             view.setResultText("Please fill in your user details.");
         }
@@ -19,14 +21,16 @@ public class LoginPresenter {
         view.setResultText("This user does not exist.");
     }
     public void goTo(String userType){
-        if (userType.equals("Student")){
-            view.enterStudentApp();
-        }
-        else if (userType.equals("Admin")){
-            view.enterAdminApp();
-        }
-        else {
-            view.setResultText("Invalid user type.");
+        switch(userType){
+            case "Student":
+                view.enterStudentApp();
+                break;
+            case "Admin":
+                view.enterAdminApp();
+                break;
+            default:
+                view.setResultText("Invalid user type.");
+                break;
         }
     }
 }
