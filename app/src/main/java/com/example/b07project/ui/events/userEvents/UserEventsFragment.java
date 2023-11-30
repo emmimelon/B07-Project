@@ -82,6 +82,7 @@ public class UserEventsFragment extends Fragment implements EventRVInterface {
                             }
                         }
                         eventsModels.add(index, e);
+                        recyclerView.getAdapter().notifyItemInserted(0);
                     }
                 }
             }
