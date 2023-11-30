@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.b07project.R;
 import com.example.b07project.databinding.FragmentEventsBinding;
+import com.example.b07project.ui.notifications.PushNotificationService;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -72,10 +73,10 @@ public class EventsFragment extends Fragment {
                         }
                     });
                     Toast.makeText(getActivity(), "Congrats! Your event is scheduled successfully", Toast.LENGTH_SHORT).show();
+                    PushNotificationService.sendPushNotification("New Event!", "A new event has been created!", getActivity());
                 }
             }
         });
-
         viewEventsButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -102,5 +103,6 @@ public class EventsFragment extends Fragment {
         // initialize Registered Users and Reviews
         ref.child("Registered Users").setValue(new HashMap<String, Object>());
         ref.child("Reviews").setValue(new HashMap<String, Object>());
+
     }
 }

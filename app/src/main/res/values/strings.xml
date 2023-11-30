@@ -84,4 +84,5 @@
     <string name="announcement_description">Announcement Description</string>
 
     <string name="view_all_events_button">View all events</string>
+    <string name="complaintDate">1900-01-01</string>
 </resources>

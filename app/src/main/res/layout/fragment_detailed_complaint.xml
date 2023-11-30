@@ -9,13 +9,13 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:layout_marginTop="50dp"
         android:id="@+id/complaintTitle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoSizeTextType="uniform"
+        android:layout_height="50dp"
         android:fontFamily="sans-serif"
         android:padding="10dp"
-        android:lines="1"
+        android:autoSizeTextType="uniform"
         android:text="@string/complaint_title"
         android:textColor="@color/black"
         android:textSize="40sp" />
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:paddingLeft="10dp"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textColor="@color/black"
         android:text="@string/complaint_username"
         android:layout_below="@+id/complaintTitle"/>
@@ -40,6 +40,17 @@
         android:paddingTop="10dp"
         android:textColor="@color/black"
         android:text="@string/complaint_description"
+        android:autoSizeTextType="uniform"
+        android:layout_below="@+id/complaintDate"/>
+
+    <TextView
+        android:id="@+id/complaintDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:textColor="@color/black"
+        android:text="@string/complaintDate"
         android:layout_below="@+id/complaintUsername"/>
 
     <Button
