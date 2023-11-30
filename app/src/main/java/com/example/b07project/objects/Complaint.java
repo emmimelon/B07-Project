@@ -19,16 +19,33 @@ public class Complaint {
     private String complaintDescription;
     private DatabaseReference mDatabase;
     public LocalDate date;
-    boolean exists = false;
-    public Complaint(String email, String complaintTitle, String complaintDescription) {
-        this.id = email;
+    private String previousDate;
+    int complaintIcon;
+    public Complaint(String id, String complaintTitle, String complaintDescription) {
+        this.id = id;
         this.complaintTitle = complaintTitle;
         this.complaintDescription = complaintDescription;
         this.date = LocalDate.now();
+    }
+    public Complaint(String title, String description, String date, int image){
+        complaintTitle = title;
+        complaintDescription = description;
+        previousDate = date;
+        complaintIcon = image;
     }
     public void writeNewComplaint() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Complaints").child(id).child(complaintTitle).child("Date").setValue(date.toString());
         mDatabase.child("Complaints").child(id).child(complaintTitle).child("Description").setValue(complaintDescription);
     }
+    public String getTitle(){
+        return complaintTitle;
+    }
+    public String getDescription(){
+        return complaintDescription;
+    }
+    public int getIcon(){
+        return complaintIcon;
+    }
+    public String getDate(){ return previousDate;}
 }
