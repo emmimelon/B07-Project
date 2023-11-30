@@ -115,12 +115,16 @@ public class ComplaintsFragment extends Fragment implements StudentComplaintView
         listRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot title: snapshot.getChildren()){
-                    Complaint c = new Complaint(title.getKey().toString(), title.child("Description").getValue().toString(),
-                            title.child("Date").getValue().toString(), R.drawable.ic_complaint_black);
-                    if (!myComplaints.contains(c)) {
-                        myComplaints.add(c);
-                        pastComplaints.getAdapter().notifyItemInserted(0);
+                if (snapshot.exists()){
+                    for (DataSnapshot title: snapshot.getChildren()){
+                        if (title != null && title.child("Description").getValue() != null){
+                            Complaint c = new Complaint(title.getKey().toString(), title.child("Description").getValue().toString(),
+                                    title.child("Date").getValue().toString(), R.drawable.ic_complaint_black);
+                            if (!myComplaints.contains(c)) {
+                                myComplaints.add(c);
+                                pastComplaints.getAdapter().notifyItemInserted(0);
+                            }
+                        }
                     }
                 }
             }
