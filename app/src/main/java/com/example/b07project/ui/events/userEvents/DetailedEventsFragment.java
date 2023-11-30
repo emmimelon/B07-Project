@@ -32,7 +32,7 @@ public class DetailedEventsFragment extends Fragment {
     int eventLimit;
     ArrayList<String> eventRSVP;
     AppCompatImageButton eventBackButton;
-    Button eventResgisterButton;
+    Button eventResgisterButton, rateEvent;
     Fragment frag;
     private FirebaseDatabase db;
     private DatabaseReference ref;
@@ -127,6 +127,45 @@ public class DetailedEventsFragment extends Fragment {
                 });
             }
         });
+        rateEvent = view.findViewById(R.id.eventRateButton);
+        rateEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ref.addValueEventListener(new ValueEventListener() {
+                    boolean canRate = true;
+                    boolean inList = true;
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot users: snapshot.child("Registered Users").getChildren()){
+                            if (users.getKey().toString().equals(userName)){
+                                inList = true;
+                                break;
+                            }
+                        }
+                        if (!inList){
+                            Toast.makeText(getContext(), "You must be registered to rate!",
+                                    Toast.LENGTH_SHORT).show();
+                            canRate = false;
+                        }
+                        for (DataSnapshot users: snapshot.child("Reviews").getChildren()) {
+                            if (users.getKey().toString().equals(userName)) {
+                                Toast.makeText(getContext(), "You've already rated this event!",
+                                        Toast.LENGTH_SHORT).show();
+                                canRate = false;
+                            }
+                        }
+                        if (canRate) {
+                            transactionRateEvent();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
         enableBottomBar(false);
     }
 
@@ -141,5 +180,10 @@ public class DetailedEventsFragment extends Fragment {
         for (int i = 0; i < navView.getMenu().size(); i++) {
             navView.getMenu().getItem(i).setEnabled(enable);
         }
+    }
+    private void transactionRateEvent() {
+        this.getParentFragmentManager().beginTransaction().hide(this).commit();
+        FragmentTransaction fragTrans = getActivity().getSupportFragmentManager().beginTransaction();
+        fragTrans.add(R.id.container, new RateEventFragment(eventName, this)).commit();
     }
 }
