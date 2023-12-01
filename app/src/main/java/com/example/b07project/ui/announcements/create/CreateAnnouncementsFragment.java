@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.b07project.R;
 import com.example.b07project.databinding.FragmentAdminAnnouncementsBinding;
+import com.example.b07project.ui.notifications.PushNotificationService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -85,6 +86,7 @@ public class CreateAnnouncementsFragment extends Fragment {
                     });
                     toast = Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT);
                     toast.show();
+                    PushNotificationService.sendPushNotification("New Announcement!", inputAnnouncementsTitle.getText().toString(), getActivity());
                     inputAnnouncementsTitle.setText("");
                     inputAnnouncementDescription.setText("");
                 }
