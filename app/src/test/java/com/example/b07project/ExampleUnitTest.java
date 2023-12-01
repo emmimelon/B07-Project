@@ -7,6 +7,9 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -23,24 +26,23 @@ public class ExampleUnitTest {
     LoginPresenter presenter;
 
 
+    @Before
+    public void setup(){
+        presenter = new LoginPresenter(view, model);
+    }
     @Test
     public void checkEmptyEmail(){
-        try {
-            presenter = new LoginPresenter(view, model);
-            when(view.getEmail()).thenReturn("");
-            when(view.getPassword()).thenReturn("");
-            presenter.checkDB();
-            verify(view).setResultText("Please fill in your user details.");
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        when(view.getEmail()).thenReturn("");
+        presenter.checkDB();
+        verify(view).setResultText("Please fill in your user details.");
+
     }
     @Test
     public void checkEmptyPassword(){
         when(view.getPassword()).thenReturn("");
         presenter.checkDB();
         verify(view).setResultText("Please fill in your user details.");
+
     }
     @Test
     public void checkInvalidUserType(){
@@ -51,45 +53,64 @@ public class ExampleUnitTest {
 
     @Test
     public void testEmailNotFound(){
-        when(view.getEmail()).thenReturn("notanemail");
         when(view.getPassword()).thenReturn("studentpassword");
+        when(view.getEmail()).thenReturn("notanemail");
+
+        doAnswer(invocation -> {
+            LoginPresenter callbackPresenter = invocation.getArgument(0);
+            callbackPresenter.setViewText();
+            return null;
+        }).when(model).signIn(any(LoginPresenter.class), eq("notanemail"), eq("studentpassword"));
+
         presenter.checkDB();
-        verify(view).setResultText("Please fill in your user details.");
+
+        verify(view).setResultText("This user does not exist.");
     }
     @Test
     public void testPasswordNotFound(){
         when(view.getEmail()).thenReturn("genericstudent@mail.utoronto.ca");
         when(view.getPassword()).thenReturn("notapassword");
+
+        doAnswer(invocation -> {
+            LoginPresenter callbackPresenter = invocation.getArgument(0);
+            callbackPresenter.setViewText();
+            return null;
+        }).when(model).signIn(any(LoginPresenter.class), eq("genericstudent@mail.utoronto.ca"), eq("notapassword"));
+
+
         presenter.checkDB();
-        verify(presenter).setViewText();
+        verify(view).setResultText("This user does not exist.");
     }
     @Test
     public void testAdminPresenterLogin(){
         when(view.getEmail()).thenReturn("genericadmin@mail.utoronto.ca");
         when(view.getPassword()).thenReturn("adminpassword");
-        presenter.checkDB();
-        verify(presenter).goTo("Admin");
-    }
-    @Test
-    public void testAdminViewLogin(){
-        when(view.getEmail()).thenReturn("genericadmin@mail.utoronto.ca");
-        when(view.getPassword()).thenReturn("adminpassword");
+
+        doAnswer(invocation -> {
+            LoginPresenter callbackPresenter = invocation.getArgument(0);
+            callbackPresenter.goTo("Admin");
+            return null;
+        }).when(model).signIn(any(LoginPresenter.class), eq("genericadmin@mail.utoronto.ca"), eq("adminpassword"));
+
+
         presenter.checkDB();
         verify(view).enterAdminApp();
     }
+
     @Test
     public void testStudentPresenterLogin(){
         when(view.getEmail()).thenReturn("genericstudent@mail.utoronto.ca");
         when(view.getPassword()).thenReturn("studentpassword");
-        presenter.checkDB();
-        verify(presenter).goTo("Student");
-    }
-    @Test
-    public void testStudentViewLogin(){
-        when(view.getEmail()).thenReturn("genericstudent@mail.utoronto.ca");
-        when(view.getPassword()).thenReturn("studentpassword");
+
+        doAnswer(invocation -> {
+            LoginPresenter callbackPresenter = invocation.getArgument(0);
+            callbackPresenter.goTo("Student");
+            return null;
+        }).when(model).signIn(any(LoginPresenter.class), eq("genericstudent@mail.utoronto.ca"), eq("studentpassword"));
+
         presenter.checkDB();
         verify(view).enterStudentApp();
     }
+
 
 }

@@ -10,7 +10,7 @@ public class LoginPresenter {
     public void checkDB() {
         String password = view.getPassword();
         String email = view.getEmail();
-        if (email.equals("") || password.equals("")){
+        if (email == null || password == null){
             view.setResultText("Please fill in your user details.");
         }
         else {
