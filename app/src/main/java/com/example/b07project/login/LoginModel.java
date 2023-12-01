@@ -19,6 +19,7 @@ public class LoginModel {
     private FirebaseDatabase db;
     private DatabaseReference ref;
     private FirebaseAuth mAuth;
+    String userType;
 
     public LoginModel(){
         db = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
@@ -41,7 +42,7 @@ public class LoginModel {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     if (snapshot.exists()){
-                                        String userType = snapshot.child("Type").getValue().toString();
+                                        userType = snapshot.child("Type").getValue().toString();
                                         presenter.goTo(userType);
                                     }
                                 }

@@ -85,4 +85,21 @@
 
     <string name="view_all_events_button">View all events</string>
     <string name="complaintDate">1900-01-01</string>
+    <string name="schedule_an_event_here_text">Schedule an Event Here!</string>
+    <string name="admin_schedule_guide_text"><![CDATA[Hi, you can create an event here ->]]></string>
+    <string name="event_name_text">event name</string>
+    <string name="event_date_text">date</string>
+    <string name="go_back_text">Go Back to Previous Page</string>
+    <string name="date_header_text">Date:</string>
+    <string name="description_header_text">Description:</string>
+    <string name="location_header_text">Location:</string>
+    <string name="partici_limit_header_text">Participation Limit:</string>
+    <string name="see_registered_users_text">See Registered Users</string>
+    <string name="see_ratings_text">See Ratings</string>
+    <string name="eventname_text">Event Name</string>
+    <string name="eventlocation_text">Event Location</string>
+    <string name="event_participationlimit_text">Event Participation Limit</string>
+    <string name="eventdate_text">Event Date</string>
+    <string name="eventdescription_text">Event Description</string>
+    <string name="back_button_text">Back</string>
 </resources>

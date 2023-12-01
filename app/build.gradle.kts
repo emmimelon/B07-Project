@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.b07project"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -50,7 +50,11 @@ dependencies {
     implementation("androidx.navigation:navigation-ui:2.7.5")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation ("com.intuit.sdp:sdp-android:1.1.0")
+    implementation ("com.intuit.ssp:ssp-android:1.1.0")
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:3.12.4")
+    implementation("androidx.recyclerview:recyclerview:1.1.0")
     implementation("nl.dionsegijn:konfetti-xml:2.0.3")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

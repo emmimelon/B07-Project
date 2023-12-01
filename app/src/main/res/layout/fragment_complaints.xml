@@ -1,70 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.complaints.ComplaintsFragment">
+    tools:context=".ui.complaints.student.ComplaintsFragment"
+    android:id="@+id/studentComplaintLayout"
+    >
 
-    <TextView
-        android:id="@+id/text_complaint_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Have a Complaint? "
-        android:textColor="@color/uoftBlue"
-        android:textSize="34sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/text_complaint_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Have a Complaint? "
+            android:textColor="@color/uoftBlue"
+            android:textSize="34sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text_complaint_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textColor="@color/uoftBlueVariant"
-        android:text="Oh no! Please let us know how we can improve."
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_complaint_title" />
+        <TextView
+            android:id="@+id/text_complaint_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/uoftBlueVariant"
+            android:text="Oh no! Please let us know how we can improve."
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_complaint_title" />
 
-    <EditText
-        android:id="@+id/editTextComplaintTitle"
-        android:layout_width="381dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="64dp"
-        android:ems="10"
-        android:hint="Please enter a title for your complaint"
-        android:inputType="text"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_complaint_description" />
+        <EditText
+            android:id="@+id/editTextComplaintTitle"
+            android:layout_width="@dimen/_280sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="Please enter a title for your complaint"
+            android:inputType="text"
+            android:textSize="20sp"
+            android:layout_marginLeft="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_complaint_description" />
 
-    <EditText
-        android:id="@+id/editTextComplaintDescription"
-        android:layout_width="382dp"
-        android:layout_height="107dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Please enter a description of your complaint"
-        android:inputType="textMultiLine"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextComplaintTitle" />
+        <EditText
+            android:id="@+id/editTextComplaintDescription"
+            android:layout_width="@dimen/_280sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:ems="10"
+            android:layout_marginLeft="12dp"
+            android:gravity="start|top"
+            android:hint="Please enter a description of your complaint"
+            android:inputType="textMultiLine"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/editTextComplaintTitle" />
 
-    <Button
-        android:id="@+id/buttonSubmitComplaint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="Submit Complaint"
-        android:onClick="onClickSubmitComplaint"
-        android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextComplaintDescription" />
+        <Button
+            android:id="@+id/buttonSubmitComplaint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Submit Complaint"
+            android:onClick="onClickSubmitComplaint"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@id/pastComplaintsTitle"
+            app:layout_constraintTop_toBottomOf="@+id/editTextComplaintDescription" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/pastComplaintsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Past Complaints"
+            android:textSize="24sp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/uoftBlue"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="12dp"
+            app:layout_constraintTop_toBottomOf="@id/buttonSubmitComplaint"
+            app:layout_constraintBottom_toTopOf="@id/pastComplaints"
+            >
+        </TextView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pastComplaints"
+            app:layout_constraintTop_toBottomOf="@id/pastComplaintsTitle"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </LinearLayout>
+
+</RelativeLayout>
