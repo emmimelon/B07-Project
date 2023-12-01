@@ -26,7 +26,6 @@ public class ExampleUnitTest {
     @Test
     public void checkEmptyEmail(){
         try {
-            System.out.println("Nena");
             presenter = new LoginPresenter(view, model);
             when(view.getEmail()).thenReturn("");
             when(view.getPassword()).thenReturn("");
@@ -37,7 +36,7 @@ public class ExampleUnitTest {
             e.printStackTrace();
         }
     }
-    /* @Test
+    @Test
     public void checkEmptyPassword(){
         when(view.getPassword()).thenReturn("");
         presenter.checkDB();
@@ -91,6 +90,6 @@ public class ExampleUnitTest {
         when(view.getPassword()).thenReturn("studentpassword");
         presenter.checkDB();
         verify(view).enterStudentApp();
-    }*/
+    }
 
 }

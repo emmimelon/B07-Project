@@ -53,7 +53,7 @@ dependencies {
     implementation ("com.intuit.sdp:sdp-android:1.1.0")
     implementation ("com.intuit.ssp:ssp-android:1.1.0")
     testImplementation("junit:junit:4.13.2")
-    testImplementation("org.mockito:mockito-all:1.10.19")
+    testImplementation("org.mockito:mockito-core:3.12.4")
     implementation("androidx.recyclerview:recyclerview:1.1.0")
     implementation("nl.dionsegijn:konfetti-xml:2.0.3")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
