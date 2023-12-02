@@ -134,28 +134,34 @@ public class DetailedEventsFragment extends Fragment {
                 ref.addValueEventListener(new ValueEventListener() {
                     boolean canRate = true;
                     boolean inList = false;
+                    boolean checked = false;
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot users: snapshot.child("Registered Users").getChildren()){
-                            if (users.getKey().toString().equals(userName)){
-                                inList = true;
-                                break;
+                        if (!checked) {
+                            for (DataSnapshot users : snapshot.child("Registered Users").getChildren()) {
+                                if (users.getKey().toString().equals(userName)) {
+                                    inList = true;
+                                    break;
+                                }
                             }
-                        }
-                        if (!inList){
-                            Toast.makeText(getContext(), "You must be registered to rate!",
-                                    Toast.LENGTH_SHORT).show();
-                            canRate = false;
-                        }
-                        for (DataSnapshot users: snapshot.child("Reviews").getChildren()) {
-                            if (users.getKey().toString().equals(userName)) {
-                                Toast.makeText(getContext(), "You've already rated this event!",
+                            if (!inList) {
+                                Toast.makeText(getContext(), "You must be registered to rate!",
                                         Toast.LENGTH_SHORT).show();
                                 canRate = false;
+                                checked = true;
                             }
-                        }
-                        if (canRate) {
-                            transactionRateEvent();
+                            for (DataSnapshot users : snapshot.child("Reviews").getChildren()) {
+                                if (users.getKey().toString().equals(userName)) {
+                                    Toast.makeText(getContext(), "You've already rated this event!",
+                                            Toast.LENGTH_SHORT).show();
+                                    canRate = false;
+                                    checked = true;
+                                }
+                            }
+                            if (canRate) {
+                                checked = true;
+                                transactionRateEvent();
+                            }
                         }
                     }
 
