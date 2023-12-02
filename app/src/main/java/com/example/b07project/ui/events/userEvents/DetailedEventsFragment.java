@@ -133,7 +133,7 @@ public class DetailedEventsFragment extends Fragment {
             public void onClick(View v) {
                 ref.addValueEventListener(new ValueEventListener() {
                     boolean canRate = true;
-                    boolean inList = true;
+                    boolean inList = false;
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot users: snapshot.child("Registered Users").getChildren()){
