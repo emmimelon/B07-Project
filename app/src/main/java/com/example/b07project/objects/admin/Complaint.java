@@ -3,14 +3,15 @@ package com.example.b07project.objects.admin;
 public class Complaint {
     String name;
     String title;
-    String description;
+    String description, date;
     int image;
 
-    public Complaint(String name, String title, String description, int image) {
+    public Complaint(String name, String title, String description, int image, String date) {
         this.name = name;
         this.title = title;
         this.description = description;
         this.image = image;
+        this.date = date;
     }
 
     public String getName() {
@@ -43,5 +44,13 @@ public class Complaint {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

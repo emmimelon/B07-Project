@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.b07project.R;
 import com.example.b07project.databinding.FragmentAdminEventsBinding;
+import com.example.b07project.ui.notifications.PushNotificationService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -141,6 +142,7 @@ public class AdminEventsFragment extends Fragment implements AdminEventsInterfac
                                     eventLocation.getText().toString(),
                                     participationLimit.getText().toString());
                             Toast.makeText(getActivity(), "Congrats! Your event is scheduled successfully", Toast.LENGTH_SHORT).show();
+                            PushNotificationService.sendPushNotification("New Event!", "A new event has been created!", getActivity());
                             alertDialog.dismiss(); // Close the dialog only if all fields are filled
                         }
                     }

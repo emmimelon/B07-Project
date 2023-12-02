@@ -18,7 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class DetailedComplaintFragment extends Fragment {
 
-    String complaintTitle, complaintUsername, complaintDescription;
+    String complaintTitle, complaintUsername, complaintDescription, complaintDate;
     Button complaintBackButton;
     Fragment frag;
 
@@ -26,10 +26,11 @@ public class DetailedComplaintFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public DetailedComplaintFragment(String complaintTitle, String complaintUsername, String complaintDescription, Fragment frag) {
+    public DetailedComplaintFragment(String complaintTitle, String complaintUsername, String complaintDescription, String complaintDate, Fragment frag) {
         this.complaintTitle = complaintTitle;
         this.complaintUsername = complaintUsername;
         this.complaintDescription = complaintDescription;
+        this.complaintDate = complaintDate;
         this.frag = frag;
     }
 
@@ -53,6 +54,8 @@ public class DetailedComplaintFragment extends Fragment {
         username.setText(complaintUsername);
         TextView description = getActivity().findViewById(R.id.complaintDescription);
         description.setText(complaintDescription);
+        TextView date = getActivity().findViewById(R.id.complaintDate);
+        date.setText(complaintDate);
         complaintBackButton = getActivity().findViewById(R.id.complaint_back_button);
         complaintBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
