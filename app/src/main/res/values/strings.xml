@@ -101,4 +101,7 @@
     <string name="eventdate_text">Event Date</string>
     <string name="eventdescription_text">Event Description</string>
     <string name="back_button_text">Back</string>
+    <string name="registered_users_title_text">These users registered your event!</string>
+    <string name="go_back_text2">Go Back</string>
+    <string name="user_name_text">User Name</string>
 </resources>

@@ -9,8 +9,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.b07project.R;
+import com.example.b07project.ui.events.admin_events.view_users.RegisteredUsersFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -78,7 +81,19 @@ public class DetailedAdminEventsFragment extends Fragment {
         seeRegisteredUsers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                RegisteredUsersFragment registeredUsersFragment = new RegisteredUsersFragment(frag);
 
+                Bundle bundle = new Bundle();
+                bundle.putString("event_name", eventName);
+                bundle.putString("event_ocation", eventLocation);
+                bundle.putString("event_date", eventDate);
+                bundle.putString("event_description", eventDescription);
+                bundle.putLong("event_participation_limit", eventParticipationLimit);
+                registeredUsersFragment.setArguments(bundle);
+
+                fragmentTransaction.replace(R.id.adminContainer, registeredUsersFragment).commit();
             }
         });
 
