@@ -1,6 +1,5 @@
-package com.example.b07project.ui.events.admin_events.view_users;
+package com.example.b07project.ui.events.admin_events.view_feedback_and_ratings;
 
-import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,11 +25,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegisteredUsersFragment extends Fragment {
-
+public class FeedbackAndRatingsFragment extends Fragment {
     private RecyclerView recyclerView;
-    private UserAdapter adapter;
-    private List<UserModel> userList;
+    private FeedbackAdapter adapter;
+    private List<FeedbackModel> feedbackList;
     private FirebaseDatabase db;
     private DatabaseReference ref;
     private String eventName, eventDate, eventLocation, eventDescription;
@@ -37,20 +36,20 @@ public class RegisteredUsersFragment extends Fragment {
     private Button goBackButton;
     private Fragment frag;
 
-    public RegisteredUsersFragment(Fragment frag) {
+    public FeedbackAndRatingsFragment(Fragment frag) {
         this.frag = frag;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_registered_users, container, false);
+        View view = inflater.inflate(R.layout.fragment_feedback_and_ratings, container, false);
 
-        recyclerView = view.findViewById(R.id.recyclerViewUsers);
+        recyclerView = view.findViewById(R.id.recyclerViewFeedback);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        userList = new ArrayList<>();
-        adapter = new UserAdapter(userList);
+        feedbackList = new ArrayList<>();
+        adapter = new FeedbackAdapter(feedbackList);
         recyclerView.setAdapter(adapter);
 
         // Retrieve event name from bundle
@@ -63,9 +62,9 @@ public class RegisteredUsersFragment extends Fragment {
         }
 
         db = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
-        ref = db.getReference("Events").child(eventName).child("Registered Users");
+        ref = db.getReference("Events").child(eventName).child("Reviews");
 
-        fetchUsers();
+        fetchFeedback();
 
         goBackButton = view.findViewById(R.id.buttonGoBack);
         goBackButton.setOnClickListener(new View.OnClickListener() {
@@ -81,19 +80,26 @@ public class RegisteredUsersFragment extends Fragment {
         return view;
     }
 
-    private void fetchUsers() {
+    private void fetchFeedback() {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                userList.clear();
+                feedbackList.clear();
                 if (!dataSnapshot.exists() || !dataSnapshot.hasChildren()) {
-                    // Show toast if no users are found
-                    Toast.makeText(getContext(), "Oh No! Nobody registered for your event :(", Toast.LENGTH_LONG).show();
+                    // Show toast if no feedback is found
+                    Toast.makeText(getContext(), "Oh No! Nobody commented your event :(", Toast.LENGTH_LONG).show();
                 } else {
                     for (DataSnapshot snap : dataSnapshot.getChildren()) {
                         String userName = snap.getKey();
-                        UserModel user = new UserModel(userName);
-                        userList.add(user);
+                        Object comment = snap.child("comment").getValue();
+                        Object rating = snap.child("rating").getValue();
+
+                        if (comment != null && rating != null) {
+                            String userComment = comment.toString();
+                            Long userRating = (Long) rating;
+                            FeedbackModel feedback = new FeedbackModel(userName, userComment, userRating);
+                            feedbackList.add(feedback);
+                        }
                     }
                     adapter.notifyDataSetChanged();
                 }
