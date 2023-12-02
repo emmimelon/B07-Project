@@ -180,11 +180,12 @@ public class AdminEventsFragment extends Fragment implements AdminEventsInterfac
     }
 
     private void submitData(String name, String date, String description, String location, String limitStr) {
+        String formattedDate = formatDate(date.split(" "));
         DatabaseReference ref = db.getReference("Events").child(name);
 
         int limit = Integer.parseInt(limitStr); // Convert string to integer
 
-        ref.child("Date").setValue(date);
+        ref.child("Date").setValue(formattedDate);
         ref.child("Description").setValue(description);
         ref.child("Location").setValue(location);
         ref.child("Participation Limit").setValue(limit);
@@ -193,7 +194,11 @@ public class AdminEventsFragment extends Fragment implements AdminEventsInterfac
         ref.child("Reviews").setValue(new HashMap<String, Object>());
     }
 
-    public void initDatePicker(){
+    private String formatDate(String[] dateArr){
+        String month = monthNameToNum(dateArr[0]);
+        return (dateArr[2] + "." + month + "." + dateArr[1].substring(0, dateArr[1].indexOf(',')));
+    }
+    private void initDatePicker(){
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener(){
 
             @Override
@@ -249,5 +254,32 @@ public class AdminEventsFragment extends Fragment implements AdminEventsInterfac
                 return "Nov.";
         }
         return "Dec.";
+    }
+    private String monthNameToNum(String month) {
+        switch(month) {
+            case "Jan.":
+                return "01";
+            case "Feb.":
+                return "02";
+            case "Mar.":
+                return "03";
+            case "Apr.":
+                return "04";
+            case "May":
+                return "05";
+            case "Jun.":
+                return "06";
+            case "Jul.":
+                return "07";
+            case "Aug.":
+                return "08";
+            case "Sep.":
+                return "09";
+            case "Oct.":
+                return "10";
+            case "Nov.":
+                return "11";
+        }
+        return "12";
     }
 }
