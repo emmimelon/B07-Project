@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class UserEventsFragment extends Fragment implements EventRVInterface {
 
-    static ArrayList<EventsModel> eventsModels;
+    static ArrayList<EventsModel> eventsModels = new ArrayList<>();
     private FirebaseDatabase db;
     private DatabaseReference ref;
 
@@ -44,56 +44,63 @@ public class UserEventsFragment extends Fragment implements EventRVInterface {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        eventsModels = new ArrayList<>();
         View view = inflater.inflate(R.layout.fragment_user_events, container, false);
         db = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
         ref = db.getReference("Events");
 
-        RecyclerView recyclerView = view.findViewById(R.id.myRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        recyclerView.setAdapter(new Event_recyclerViewAdapter(getActivity().getApplicationContext(), eventsModels, this));
-        showRecyclerView(false, recyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.studentRecyclerView);
 
-        CalendarView calView = view.findViewById(R.id.myCalendarView);
-
-        calView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                while (eventsModels.size() != 0)
-                {
-                    eventsModels.remove(0);
-                    recyclerView.getAdapter().notifyItemRemoved(0);
-                }
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    String eName = snap.getKey().toString();
+                    String eLocation = snap.child("Location").getValue().toString();
+                    String eDate = snap.child("Date").getValue().toString();
+                    String eDescription = snap.child("Description").getValue().toString();
 
-                        for (DataSnapshot snap : snapshot.getChildren()) {
-                            String eDate = snap.child("Date").getValue().toString();
-                            String givenDate = year + "."+ (month + 1) + "." + dayOfMonth;
-                            if (eDate.equals(givenDate)){
-                                String eName = snap.getKey().toString();
-                                String eLocation = snap.child("Location").getValue().toString();
-                                String eDescription = snap.child("Description").getValue().toString();
+                    EventsModel e = new EventsModel(eName, eLocation, eDate, eDescription);
+                    if (!eventsModels.contains(e)) {
+                        int index = 0;
+                        boolean notPlaced = true;
+                        for(int i = 0; i < eventsModels.size() && notPlaced; i++){
+                            int eDateYear = Integer.parseInt(eDate.substring(0,4));
+                            int year = Integer.parseInt(eventsModels.get(i).getEventDate().
+                                    substring(0,4));
+                            int eDateMonth = Integer.parseInt(eDate.substring(5, 7));
+                            int month = Integer.parseInt(eventsModels.get(i).getEventDate().
+                                    substring(5, 7));
+                            if (eDateYear > year){
+                                index = i;
+                                notPlaced = false;
+                            }
 
-                                EventsModel e = new EventsModel(eName, eLocation, eDate, eDescription);
-                                if (!eventsModels.contains(e)) {
-                                    eventsModels.add(e);
-                                    recyclerView.getAdapter().notifyItemInserted(0);
-                                }
+                            else if (eDateYear == year && eDateMonth > month){
+                                index = i;
+                                notPlaced = false;
+                            }
+                            else if (eDateYear == year && eDateMonth == month && Integer.parseInt(
+                                    eDate.substring(8)) > Integer.parseInt(
+                                    eventsModels.get(i).getEventDate().substring(8))){
+                                index = i;
+                                notPlaced = false;
+                            }
+                            else{
+                                index++;
                             }
                         }
+                        eventsModels.add(index, e);
+                        recyclerView.getAdapter().notifyItemInserted(0);
                     }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-                showRecyclerView(true, recyclerView);
-
+                }
             }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                    }
         });
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        recyclerView.setAdapter(new Event_recyclerViewAdapter(getActivity().getApplicationContext(), eventsModels, this));
         return view;
     }
 
@@ -111,34 +118,4 @@ public class UserEventsFragment extends Fragment implements EventRVInterface {
 
     }
 
-    private void showRecyclerView(boolean show, RecyclerView view) {
-        if (show) {
-            view.setVisibility(View.VISIBLE);
-        } else {
-            view.setVisibility(View.GONE);
-        }
-    }
 }
-
-    /*int index = 0;
-    boolean notPlaced = true;
-                                    for(int i = 0; i < eventsModels.size() && notPlaced; i++){
-        if (Integer.parseInt(eDate.substring(0,4)) > Integer.parseInt(
-        eventsModels.get(i).getEventDate().substring(0,4))){
-        index = i;
-        notPlaced = false;
-        }
-        else if (Integer.parseInt(eDate.substring(5, 7)) > Integer.parseInt(
-        eventsModels.get(i).getEventDate().substring(5, 7))){
-        index = i;
-        notPlaced = false;
-        }
-        else if (Integer.parseInt(eDate.substring(8)) > Integer.parseInt(
-        eventsModels.get(i).getEventDate().substring(8))){
-        index = i;
-        notPlaced = false;
-        }
-        else{
-        index++;
-        }
-        */
