@@ -147,14 +147,14 @@ public class AdminEventsFragment extends Fragment implements AdminEventsInterfac
                                 participationLimit.getText().toString().isEmpty();
 
                         if (uncompleted) {
-                            Toast.makeText(getActivity(), "Please fill in all required fields!!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill in all fields!!!", Toast.LENGTH_SHORT).show();
                         } else {
                             submitData(eventName.getText().toString(),
                                     eventDate.getText().toString(),
                                     eventDescription.getText().toString(),
                                     eventLocation.getText().toString(),
                                     participationLimit.getText().toString());
-                            Toast.makeText(getActivity(), "Congrats! Your event is scheduled successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Success!!! Your new event has been posted!", Toast.LENGTH_SHORT).show();
                             PushNotificationService.sendPushNotification("New Event!", "A new event has been created!", getActivity());
                             alertDialog.dismiss(); // Close the dialog only if all fields are filled
                         }
