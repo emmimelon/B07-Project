@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize">
 
     <EditText
         android:id="@+id/rateEventFeedback"
@@ -51,9 +52,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:orientation="horizontal"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rateInfo">
+
+        <ImageView
+            android:id="@+id/rateSad"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:gravity="center"
+            app:srcCompat="@drawable/bigsad" />
 
         <ImageButton
             android:id="@+id/star1"
@@ -99,6 +108,13 @@
             android:backgroundTint="@color/white"
             android:contentDescription="5 Stars"
             android:src="@drawable/baseline_star_rate_48" />
+
+        <ImageView
+            android:id="@+id/rateHappy"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:gravity="center"
+            app:srcCompat="@drawable/veryhappy" />
     </LinearLayout>
 
     <TextView
@@ -134,21 +150,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/rateHappy"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="54dp"
-        app:layout_constraintStart_toEndOf="@+id/starRateLinearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/rateInfo"
-        app:srcCompat="@drawable/veryhappy" />
-
-    <ImageView
-        android:id="@+id/rateSad"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="54dp"
-        app:layout_constraintEnd_toStartOf="@+id/starRateLinearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/rateInfo"
-        app:srcCompat="@drawable/bigsad" />
 </androidx.constraintlayout.widget.ConstraintLayout>
