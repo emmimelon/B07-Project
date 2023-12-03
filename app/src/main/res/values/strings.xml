@@ -106,4 +106,5 @@
     <string name="user_name_text">User Name</string>
     <string name="feedback_and_ratings_text">FeedBack and Ratings</string>
     <string name="comment_text">Comment:</string>
+    <string name="average_rating_text">Nobody has commented on this event yet.</string>
 </resources>

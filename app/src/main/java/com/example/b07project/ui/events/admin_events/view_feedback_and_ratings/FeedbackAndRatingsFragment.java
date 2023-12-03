@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,7 @@ public class FeedbackAndRatingsFragment extends Fragment {
     private Long eventParticipationLimit;
     private Button goBackButton;
     private Fragment frag;
+    private TextView averageRating;
 
     public FeedbackAndRatingsFragment(Fragment frag) {
         this.frag = frag;
@@ -61,6 +63,8 @@ public class FeedbackAndRatingsFragment extends Fragment {
             eventParticipationLimit = getArguments().getLong("event_participation_limit");
         }
 
+        averageRating = view.findViewById(R.id.textViewAverageRating);
+
         db = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
         ref = db.getReference("Events").child(eventName).child("Reviews");
 
@@ -84,6 +88,8 @@ public class FeedbackAndRatingsFragment extends Fragment {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                double ratingSum = 0;
+                int ratingCount = 0;
                 feedbackList.clear();
                 if (!dataSnapshot.exists() || !dataSnapshot.hasChildren()) {
                     // Show toast if no feedback is found
@@ -97,9 +103,15 @@ public class FeedbackAndRatingsFragment extends Fragment {
                         if (comment != null && rating != null) {
                             String userComment = comment.toString();
                             Long userRating = (Long) rating;
+                            ratingSum += userRating.doubleValue();
+                            ratingCount++;
                             FeedbackModel feedback = new FeedbackModel(userName, userComment, userRating);
                             feedbackList.add(feedback);
                         }
+                    }
+                    if (ratingCount > 0) {
+                        double ratingAverage = (ratingSum / ratingCount);
+                        averageRating.setText(String.format("Average Rating : %.2f", ratingAverage));
                     }
                     adapter.notifyDataSetChanged();
                 }
