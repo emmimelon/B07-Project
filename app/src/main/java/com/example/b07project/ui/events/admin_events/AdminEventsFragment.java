@@ -31,7 +31,7 @@ import java.util.HashMap;
 
 public class AdminEventsFragment extends Fragment implements AdminEventsInterface {
 
-    private @NonNull FragmentAdminEventsBinding binding;
+    private FragmentAdminEventsBinding binding;
     static ArrayList<AdminEventsModel> adminEventsModels = new ArrayList<>();
     private FirebaseDatabase db;
     private DatabaseReference ref;
@@ -163,7 +163,9 @@ public class AdminEventsFragment extends Fragment implements AdminEventsInterfac
 
         this.getParentFragmentManager().beginTransaction().hide(this).commit();
         FragmentTransaction fragTrans = getActivity().getSupportFragmentManager().beginTransaction();
-        fragTrans.add(R.id.adminContainer, new DetailedAdminEventsFragment(name, location, date, desc, limit, this)).commit();
+        fragTrans.replace(R.id.adminContainer, new DetailedAdminEventsFragment(name, location, date, desc, limit, this));
+        fragTrans.addToBackStack(null);
+        fragTrans.commit();
     }
 
     private void submitData(String name, String date, String description, String location, String limitStr) {
