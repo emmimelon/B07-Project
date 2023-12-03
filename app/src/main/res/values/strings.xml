@@ -86,7 +86,7 @@
     <string name="view_all_events_button">View all events</string>
     <string name="complaintDate">1900-01-01</string>
     <string name="schedule_an_event_here_text">Schedule an Event Here!</string>
-    <string name="admin_schedule_guide_text"><![CDATA[Hi, you can create an event here ->]]></string>
+    <string name="admin_schedule_guide_text"><![CDATA[Create an event here ->]]></string>
     <string name="event_name_text">event name</string>
     <string name="event_date_text">date</string>
     <string name="go_back_text">Go Back to Previous Page</string>
@@ -95,11 +95,18 @@
     <string name="location_header_text">Location:</string>
     <string name="partici_limit_header_text">Participation Limit:</string>
     <string name="see_registered_users_text">See Registered Users</string>
-    <string name="see_ratings_text">See Ratings</string>
+    <string name="see_feedback_and_ratings_text">See Student Feedback and Ratings</string>
     <string name="eventname_text">Event Name</string>
     <string name="eventlocation_text">Event Location</string>
     <string name="event_participationlimit_text">Event Participation Limit</string>
     <string name="eventdate_text">Event Date</string>
     <string name="eventdescription_text">Event Description</string>
     <string name="back_button_text">Back</string>
+    <string name="registered_users_title_text">These users registered your event!</string>
+    <string name="go_back_text2">go back</string>
+    <string name="user_name_text">User Name</string>
+    <string name="feedback_and_ratings_text">FeedBack and Ratings</string>
+    <string name="comment_text">Comment:</string>
+    <string name="average_rating_text">Nobody has commented on this event yet.</string>
+    <string name="total_of_ratings_text">Total # of ratings: 0</string>
 </resources>
