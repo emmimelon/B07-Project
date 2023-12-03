@@ -115,7 +115,6 @@ public class RateEventFragment extends Fragment {
                 transition(frag);
             }
         });
-        showBottomBar(false);
     }
     private void editStarColour(ImageButton[] stars, int rating) {
         for (int i = 0; i < rating; i++) {
@@ -128,16 +127,7 @@ public class RateEventFragment extends Fragment {
         }
     }
     private void transition(Fragment frag) {
-        showBottomBar(true);
         frag.getParentFragmentManager().beginTransaction().show(frag).commit();
         this.getParentFragmentManager().beginTransaction().remove(this).commit();
-    }
-    private void showBottomBar(boolean show) {
-        BottomNavigationView navView = getActivity().findViewById(R.id.nav_view);
-        if (show) {
-            navView.setVisibility(View.VISIBLE);
-        } else {
-            navView.setVisibility(View.GONE);
-        }
     }
 }
