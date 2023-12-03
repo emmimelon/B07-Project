@@ -70,17 +70,22 @@ public class NotificationsFragment extends Fragment implements NotificationsView
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot date : snapshot.getChildren()) {
-                    String[] dateString = date.getKey().split(",");
-                    int year = Integer.parseInt(dateString[0]);
-                    int month = Integer.parseInt(dateString[1]);
-                    int day = Integer.parseInt(dateString[2]);
-                    Notification n = new Notification("Announcement", date.child("title").getValue().toString(),
-                            R.drawable.megaphone, LocalDate.of(year, month, day), date.child("description").getValue().toString(), date.child("creator").getValue().toString(), date.getKey());
-                    if (!notifications.contains(n)) {
-                        notifications.add(n);
-                        Collections.sort(notifications);
-                        Collections.reverse(notifications);
-                        recyclerView.getAdapter().notifyItemInserted(0);
+                    if (date != null){
+                        String[] dateString = date.getKey().split(",");
+                        int year = Integer.parseInt(dateString[0]);
+                        int month = Integer.parseInt(dateString[1]);
+                        int day = Integer.parseInt(dateString[2]);
+                        if (date.child("title").getValue() != null && date.child("description").getValue()
+                        != null && date.child("creator").getValue() != null){
+                            Notification n = new Notification("Announcement", date.child("title").getValue().toString(),
+                                    R.drawable.megaphone, LocalDate.of(year, month, day), date.child("description").getValue().toString(), date.child("creator").getValue().toString(), date.getKey());
+                            if (!notifications.contains(n)) {
+                                notifications.add(n);
+                                Collections.sort(notifications);
+                                Collections.reverse(notifications);
+                                recyclerView.getAdapter().notifyItemInserted(0);
+                            }
+                        }
                     }
                 }
             }
@@ -95,16 +100,18 @@ public class NotificationsFragment extends Fragment implements NotificationsView
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot event : snapshot.getChildren()) {
-                    String[] dateString = event.child("Date").getValue().toString().split("\\.");
-                    int year = Integer.parseInt(dateString[0]);
-                    int month = Integer.parseInt(dateString[1]);
-                    int day = Integer.parseInt(dateString[2]);
-                    Notification n = new Notification("Event", event.getKey(), R.drawable.calendar, LocalDate.of(year, month, day), "", "", "");
-                    if (!notifications.contains(n)) {
-                        notifications.add(n);
-                        Collections.sort(notifications);
-                        Collections.reverse(notifications);
-                        recyclerView.getAdapter().notifyItemInserted(0);
+                    if (event != null){
+                        String[] dateString = event.child("Date").getValue().toString().split("\\.");
+                        int year = Integer.parseInt(dateString[0]);
+                        int month = Integer.parseInt(dateString[1]);
+                        int day = Integer.parseInt(dateString[2]);
+                        Notification n = new Notification("Event", event.getKey(), R.drawable.calendar, LocalDate.of(year, month, day), "", "", "");
+                        if (!notifications.contains(n)) {
+                            notifications.add(n);
+                            Collections.sort(notifications);
+                            Collections.reverse(notifications);
+                            recyclerView.getAdapter().notifyItemInserted(0);
+                        }
                     }
                 }
             }

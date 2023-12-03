@@ -62,6 +62,7 @@ public class DetailedEventsFragment extends Fragment {
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        enableBottomBar(false);
         TextView name = getActivity().findViewById(R.id.event_Name);
         name.setText(eventName);
         TextView loc = getActivity().findViewById(R.id.event_Location);
@@ -183,6 +184,11 @@ public class DetailedEventsFragment extends Fragment {
 
     private void enableBottomBar(boolean enable) {
         BottomNavigationView navView = getActivity().findViewById(R.id.nav_view);
+        if (enable){
+            navView.setVisibility(View.VISIBLE);
+        } else if (!enable) {
+            navView.setVisibility(View.GONE);
+        }
         for (int i = 0; i < navView.getMenu().size(); i++) {
             navView.getMenu().getItem(i).setEnabled(enable);
         }
