@@ -1,10 +1,14 @@
 package com.example.b07project.objects;
 
+import android.os.Build;
 import android.provider.ContactsContract;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
+import com.example.b07project.ui.notifications.Notification;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -13,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.time.LocalDate;
 
-public class Complaint {
+public class Complaint implements Comparable<Complaint>{
     private String id;
     private String complaintTitle;
     private String complaintDescription;
@@ -48,4 +52,17 @@ public class Complaint {
         return complaintIcon;
     }
     public String getDate(){ return previousDate;}
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public int compareTo(Complaint o) {
+        return this.getDate().compareTo(o.getDate());
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (!(obj instanceof Complaint)) return false;
+        Complaint other = (Complaint) obj;
+        return this.complaintTitle.equals(other.complaintTitle);
+    }
 }

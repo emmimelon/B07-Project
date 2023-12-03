@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 public class AdminComplaintsFragment extends Fragment implements ComplaintViewInterface {
 
@@ -77,6 +78,8 @@ public class AdminComplaintsFragment extends Fragment implements ComplaintViewIn
                                                 Complaint c = new Complaint(fullName, complaint.getKey(), complaintDesc, R.drawable.megaphone, complaintDate);
                                                 if (!complaints.contains(c)) {
                                                     complaints.add(c);
+                                                    Collections.sort(complaints);
+                                                    Collections.reverse(complaints);
                                                     recyclerView.getAdapter().notifyItemInserted(0);
                                                 }
                                             }
