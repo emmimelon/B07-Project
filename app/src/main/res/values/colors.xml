@@ -16,4 +16,5 @@
     <color name="darkbg">#232221</color>
     <color name="error">#FF3232</color>
     <color name="uoftGray">#F2F4F7</color>
+    <color name="gray">#B1B6B6</color>
 </resources>
