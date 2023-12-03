@@ -49,7 +49,6 @@ public class AdminComplaintsFragment extends Fragment implements ComplaintViewIn
         ref = firebaseDatabase.getReference("Complaints");
         userRef = firebaseDatabase.getReference("Users");
 
-
         complaints = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         recyclerView.setAdapter(new ComplaintAdapter(getActivity().getApplicationContext(), complaints, this));
@@ -74,13 +73,15 @@ public class AdminComplaintsFragment extends Fragment implements ComplaintViewIn
                                                     complaintDesc = complaintInfo;
                                                     complaintDate = "";
                                                 }
-
-                                                Complaint c = new Complaint(fullName, complaint.getKey(), complaintDesc, R.drawable.megaphone, complaintDate);
-                                                if (!complaints.contains(c)) {
-                                                    complaints.add(c);
-                                                    Collections.sort(complaints);
-                                                    Collections.reverse(complaints);
-                                                    recyclerView.getAdapter().notifyItemInserted(0);
+                                                if (fullName != null && complaint.getKey() != null && complaintDesc != null && complaintDate != null
+                                                && !complaintDate.equals("")) {
+                                                    Complaint c = new Complaint(fullName, complaint.getKey(), complaintDesc, R.drawable.megaphone, complaintDate);
+                                                    if (!complaints.contains(c) && c.getDate() != null) {
+                                                        complaints.add(c);
+                                                        Collections.sort(complaints);
+                                                        Collections.reverse(complaints);
+                                                        recyclerView.getAdapter().notifyItemInserted(0);
+                                                    }
                                                 }
                                             }
                                         }
