@@ -36,7 +36,7 @@ public class FeedbackAndRatingsFragment extends Fragment {
     private Long eventParticipationLimit;
     private Button goBackButton;
     private Fragment frag;
-    private TextView averageRating;
+    private TextView averageRating, countRating;
 
     public FeedbackAndRatingsFragment(Fragment frag) {
         this.frag = frag;
@@ -64,6 +64,7 @@ public class FeedbackAndRatingsFragment extends Fragment {
         }
 
         averageRating = view.findViewById(R.id.textViewAverageRating);
+        countRating = view.findViewById(R.id.textViewCountRating);
 
         db = FirebaseDatabase.getInstance("https://b07-project-c5222-default-rtdb.firebaseio.com/");
         ref = db.getReference("Events").child(eventName).child("Reviews");
@@ -112,6 +113,7 @@ public class FeedbackAndRatingsFragment extends Fragment {
                     if (ratingCount > 0) {
                         double ratingAverage = (ratingSum / ratingCount);
                         averageRating.setText(String.format("Average Rating : %.2f", ratingAverage));
+                        countRating.setText(String.format("Total # of ratings: %d", ratingCount));
                     }
                     adapter.notifyDataSetChanged();
                 }
