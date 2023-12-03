@@ -74,6 +74,11 @@ public class DetailedComplaintFragment extends Fragment {
 
     private void enableBottomBar(boolean enable) {
         BottomNavigationView adminNavView = getActivity().findViewById(R.id.admin_nav_view);
+        if (enable){
+            adminNavView.setVisibility(View.VISIBLE);
+        } else if (!enable) {
+            adminNavView.setVisibility(View.GONE);
+        }
         for (int i = 0; i < adminNavView.getMenu().size(); i++) {
             adminNavView.getMenu().getItem(i).setEnabled(enable);
         }

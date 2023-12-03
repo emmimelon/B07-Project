@@ -64,7 +64,7 @@ public class ExampleUnitTest {
 
         presenter.checkDB();
 
-        verify(view).setResultText("This user does not exist.");
+        verify(view).setResultText("Incorrect password or user does not exist.");
     }
     @Test
     public void testPasswordNotFound(){
@@ -79,7 +79,7 @@ public class ExampleUnitTest {
 
 
         presenter.checkDB();
-        verify(view).setResultText("This user does not exist.");
+        verify(view).setResultText("Incorrect password or user does not exist.");
     }
     @Test
     public void testAdminPresenterLogin(){

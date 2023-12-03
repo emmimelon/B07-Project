@@ -31,7 +31,7 @@ public class LoginPresenter {
         }
     }
     public void setViewText() {
-        view.setResultText("This user does not exist.");
+        view.setResultText("Incorrect password or user does not exist.");
     }
     public void goTo(String userType){
         switch(userType){
