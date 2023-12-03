@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/navigation_complaints"
-        android:name="com.example.b07project.ui.complaints.ComplaintsFragment"
+        android:name="com.example.b07project.ui.complaints.student.ComplaintsFragment"
         android:label="Complaints"
         tools:layout="@layout/fragment_complaints" >
     </fragment>

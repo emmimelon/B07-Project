@@ -130,9 +130,9 @@ public class PostFragment extends Fragment{
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
                         if (i < requiredCourses.length){
-                            courseCode.setText(requiredCourses[i]);
                             Double gpa = (Double) parent.getItemAtPosition(pos);
                             Toast.makeText(getActivity(), "Course: "+ requiredCourses[i] + " GPA: " +gpa, Toast.LENGTH_SHORT).show();
+                            courseCode.setText(requiredCourses[i]);
                             if (gpa == 0.0){
                                 postFail.setVisibility(View.VISIBLE);
                                 gpaSelect.setVisibility(View.GONE);

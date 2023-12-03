@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="40dp"
+        android:textColor="@color/darkbg"
+        android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/event_Location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
+        android:textColor="@color/darkbg"
         android:text="TextView"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/event_Date"
@@ -35,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
+        android:textColor="@color/darkbg"
         android:text="TextView"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/event_Desc"
@@ -45,6 +48,7 @@
         android:id="@+id/event_Desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/darkbg"
         android:layout_marginBottom="80dp"
         android:text="TextView"
         android:textSize="20dp"
@@ -57,11 +61,20 @@
         android:id="@+id/eventSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="132dp"
         android:text="Click to Register"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/eventRateButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/eventRateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:text="Send Feedback"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton

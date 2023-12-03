@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <EditText
         android:id="@+id/rateEventFeedback"
@@ -15,6 +16,7 @@
         android:ems="10"
         android:gravity="bottom|start"
         android:hint="Tell us your thoughts! (Required)"
+        android:background="@color/gray"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:maxLines="8"
@@ -28,9 +30,10 @@
         android:id="@+id/rateEventTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="54dp"
         android:text="Rate: Event Title"
         android:textSize="30dp"
+        android:textColor="@color/uoftBlue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,6 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Disclaimer: Only admins will be able to read your review"
+        android:textColor="@color/darkbg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rateEventTitle" />
@@ -61,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
+            android:contentDescription="1 Star"
             android:src="@drawable/baseline_star_rate_48" />
 
         <ImageButton
@@ -69,6 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
+            android:contentDescription="2 Stars"
             android:src="@drawable/baseline_star_rate_48" />
 
         <ImageButton
@@ -77,6 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
+            android:contentDescription="3 Stars"
             android:src="@drawable/baseline_star_rate_48" />
 
         <ImageButton
@@ -85,6 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
+            android:contentDescription="4 Stars"
             android:src="@drawable/baseline_star_rate_48" />
 
         <ImageButton
@@ -93,6 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
+            android:contentDescription="5 Stars"
             android:src="@drawable/baseline_star_rate_48" />
     </LinearLayout>
 
@@ -100,10 +109,11 @@
         android:id="@+id/rateInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:text="Tap the star corresponding to your rating out of 5 (Required)"
+        android:textColor="@color/darkbg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rateEventDisclaimer" />
 
@@ -116,4 +126,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rateEventFeedback" />
+
+    <ImageButton
+        android:id="@+id/rateBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#FFFFFF"
+        android:contentDescription="Back"
+        android:src="@drawable/baseline_arrow_back_36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/rateHappy"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="54dp"
+        app:layout_constraintStart_toEndOf="@+id/starRateLinearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/rateInfo"
+        app:srcCompat="@drawable/veryhappy" />
+
+    <ImageView
+        android:id="@+id/rateSad"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="54dp"
+        app:layout_constraintEnd_toStartOf="@+id/starRateLinearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/rateInfo"
+        app:srcCompat="@drawable/bigsad" />
 </androidx.constraintlayout.widget.ConstraintLayout>

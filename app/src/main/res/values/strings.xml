@@ -84,6 +84,7 @@
     <string name="announcement_description">Announcement Description</string>
 
     <string name="view_all_events_button">View all events</string>
+    <string name="complaintDate">1900-01-01</string>
     <string name="schedule_an_event_here_text">Schedule an Event Here!</string>
     <string name="admin_schedule_guide_text"><![CDATA[Create an event here ->]]></string>
     <string name="event_name_text">event name</string>

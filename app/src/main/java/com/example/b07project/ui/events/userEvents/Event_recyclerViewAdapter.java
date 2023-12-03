@@ -59,7 +59,7 @@ public class Event_recyclerViewAdapter extends RecyclerView.Adapter<Event_recycl
                 @Override
                 public void onClick(View v) {
                     if (recyclerViewInterface != null){
-                        int pos = getAdapterPosition();
+                        int pos = getBindingAdapterPosition();
 
                         if(pos != RecyclerView.NO_POSITION){
                             recyclerViewInterface.onItemClick(pos);

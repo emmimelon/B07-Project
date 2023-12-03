@@ -1,16 +1,24 @@
 package com.example.b07project.objects.admin;
 
-public class Complaint {
+import android.os.Build;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
+import com.example.b07project.ui.notifications.Notification;
+
+public class Complaint implements Comparable<Complaint>{
     String name;
     String title;
-    String description;
+    String description, date;
     int image;
 
-    public Complaint(String name, String title, String description, int image) {
+    public Complaint(String name, String title, String description, int image, String date) {
         this.name = name;
         this.title = title;
         this.description = description;
         this.image = image;
+        this.date = date;
     }
 
     public String getName() {
@@ -43,5 +51,26 @@ public class Complaint {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public int compareTo(Complaint o) {
+        return this.getDate().compareTo(o.getDate());
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (!(obj instanceof Complaint)) return false;
+        Complaint other = (Complaint) obj;
+        return this.title.equals(other.title) && this.name.equals(other.name);
     }
 }
