@@ -6,12 +6,12 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\alice\.android\avd\Pixel_2_API_UpsideDownCakePrivacySandbox.avd" />
+            <type value="SERIAL_NUMBER" />
+            <value value="R5CR80MCPYP" />
           </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2023-12-03T01:15:06.066938Z" />
+    <timeTargetWasSelectedWithDropDown value="2023-12-03T03:02:29.665621Z" />
   </component>
 </project>

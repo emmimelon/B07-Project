@@ -54,44 +54,48 @@ public class UserEventsFragment extends Fragment implements EventRVInterface {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap : snapshot.getChildren()) {
-                    String eName = snap.getKey().toString();
-                    String eLocation = snap.child("Location").getValue().toString();
-                    String eDate = snap.child("Date").getValue().toString();
-                    String eDescription = snap.child("Description").getValue().toString();
+                    if (snap.exists() && snap.child("Location").getValue() != null &&
+                            snap.child("Date").getValue() != null && snap.child("Description").getValue() != null){
+                        String eName = snap.getKey().toString();
+                        String eLocation = snap.child("Location").getValue().toString();
+                        String eDate = snap.child("Date").getValue().toString();
+                        String eDescription = snap.child("Description").getValue().toString();
 
-                    EventsModel e = new EventsModel(eName, eLocation, eDate, eDescription);
-                    if (!eventsModels.contains(e)) {
-                        int index = 0;
-                        boolean notPlaced = true;
-                        for(int i = 0; i < eventsModels.size() && notPlaced; i++){
-                            int eDateYear = Integer.parseInt(eDate.substring(0,4));
-                            int year = Integer.parseInt(eventsModels.get(i).getEventDate().
-                                    substring(0,4));
-                            int eDateMonth = Integer.parseInt(eDate.substring(5, 7));
-                            int month = Integer.parseInt(eventsModels.get(i).getEventDate().
-                                    substring(5, 7));
-                            if (eDateYear > year){
-                                index = i;
-                                notPlaced = false;
-                            }
+                        EventsModel e = new EventsModel(eName, eLocation, eDate, eDescription);
+                        if (!eventsModels.contains(e)) {
+                            int index = 0;
+                            boolean notPlaced = true;
+                            for(int i = 0; i < eventsModels.size() && notPlaced; i++){
+                                int eDateYear = Integer.parseInt(eDate.substring(0,4));
+                                int year = Integer.parseInt(eventsModels.get(i).getEventDate().
+                                        substring(0,4));
+                                int eDateMonth = Integer.parseInt(eDate.substring(5, 7));
+                                int month = Integer.parseInt(eventsModels.get(i).getEventDate().
+                                        substring(5, 7));
+                                if (eDateYear > year){
+                                    index = i;
+                                    notPlaced = false;
+                                }
 
-                            else if (eDateYear == year && eDateMonth > month){
-                                index = i;
-                                notPlaced = false;
+                                else if (eDateYear == year && eDateMonth > month){
+                                    index = i;
+                                    notPlaced = false;
+                                }
+                                else if (eDateYear == year && eDateMonth == month && Integer.parseInt(
+                                        eDate.substring(8)) > Integer.parseInt(
+                                        eventsModels.get(i).getEventDate().substring(8))){
+                                    index = i;
+                                    notPlaced = false;
+                                }
+                                else{
+                                    index++;
+                                }
                             }
-                            else if (eDateYear == year && eDateMonth == month && Integer.parseInt(
-                                    eDate.substring(8)) > Integer.parseInt(
-                                    eventsModels.get(i).getEventDate().substring(8))){
-                                index = i;
-                                notPlaced = false;
-                            }
-                            else{
-                                index++;
-                            }
+                            eventsModels.add(index, e);
+                            recyclerView.getAdapter().notifyItemInserted(0);
                         }
-                        eventsModels.add(index, e);
-                        recyclerView.getAdapter().notifyItemInserted(0);
                     }
+
                 }
             }
             @Override
