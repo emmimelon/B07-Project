@@ -22,6 +22,7 @@
         android:id="@+id/userComment"
         android:layout_width="288dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/amaranth"
         android:textColor="@color/uoftBlueLight"
