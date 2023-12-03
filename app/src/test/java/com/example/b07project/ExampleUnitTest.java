@@ -6,7 +6,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doAnswer;
@@ -64,7 +63,7 @@ public class ExampleUnitTest {
 
         presenter.checkDB();
 
-        verify(view).setResultText("This user does not exist.");
+        verify(view).setResultText("Incorrect password or user does not exist.");
     }
     @Test
     public void testPasswordNotFound(){
@@ -79,7 +78,7 @@ public class ExampleUnitTest {
 
 
         presenter.checkDB();
-        verify(view).setResultText("This user does not exist.");
+        verify(view).setResultText("Incorrect password or user does not exist.");
     }
     @Test
     public void testAdminPresenterLogin(){

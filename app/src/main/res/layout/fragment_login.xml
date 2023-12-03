@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkbg"
+    android:background="@drawable/darkbg"
     android:id="@+id/loginLayout"
     >
 
@@ -95,7 +95,6 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emaillogin" />
-    />
 
     <TextView
         android:id="@+id/output2"
@@ -118,7 +117,7 @@
         android:textColor="@color/uoftBlueLight"
         app:layout_constraintBottom_toTopOf="@+id/output2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginPassword"
         app:layout_constraintVertical_bias="0.083" />

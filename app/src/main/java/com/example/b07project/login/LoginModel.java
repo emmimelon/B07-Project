@@ -1,7 +1,5 @@
 package com.example.b07project.login;
 
-import android.app.Activity;
-
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;

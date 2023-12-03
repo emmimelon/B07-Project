@@ -45,7 +45,7 @@ public class PostFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity() ,
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity() ,
                 R.layout.post_choices, postCategories);
         autoPostChoice.setAdapter(arrayAdapter);
     }
@@ -56,10 +56,10 @@ public class PostFragment extends Fragment{
         View root = binding.getRoot();
         autoPostChoice = root.findViewById(R.id.autoPostChoice);
         autoPostChoice.setInputType(InputType.TYPE_NULL);
-        gpaSelect = (LinearLayout) root.findViewById(R.id.selectGPA);
+        gpaSelect = root.findViewById(R.id.selectGPA);
         gpaSelect.setVisibility(View.GONE);
-        postSuccess = (LinearLayout) root.findViewById(R.id.postSuccess);
-        postFail = (LinearLayout) root.findViewById(R.id.postFail);
+        postSuccess = root.findViewById(R.id.postSuccess);
+        postFail = root.findViewById(R.id.postFail);
         postSuccess.setVisibility(View.GONE);
         postFail.setVisibility(View.GONE);
         Double[] possibleGPA = {0.0, 0.7, 1.0, 1.3, 1.7, 2.0, 2.3, 2.7, 3.0, 3.3, 3.7, 4.0};
@@ -79,8 +79,8 @@ public class PostFragment extends Fragment{
 
         Double[] thresholds = {2.5, 0.7, 2.5, 2.0, 2.5, 2.3};
 
-        courseCode = (TextView) root.findViewById(R.id.courseCode);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity() ,
+        courseCode = root.findViewById(R.id.courseCode);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity() ,
                 R.layout.post_choices, postCategories);
         autoPostChoice.setAdapter(arrayAdapter);
         check = true;
@@ -88,7 +88,7 @@ public class PostFragment extends Fragment{
         autoPostChoice.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity() ,
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity() ,
                         R.layout.post_choices, postCategories);
                 autoPostChoice.setAdapter(arrayAdapter);
                 postSuccess.setVisibility(View.GONE);
@@ -134,7 +134,6 @@ public class PostFragment extends Fragment{
                                 boolean extracheck = true;
                                 switch(items){
                                     case "Computer Science Major/Specialist":
-                                        count = 0;
                                         if (gpaAcrossCourses[0] < 1.7) count++;
                                         if (gpaAcrossCourses[2] < 1.7) count++;
                                         if (gpaAcrossCourses[4] < 1.7) count++;
@@ -143,21 +142,19 @@ public class PostFragment extends Fragment{
                                         }
                                         break;
                                     case "Mathematics Specialist":
-                                        count = 0;
                                         if (gpaAcrossCourses[0] < 3.0) count++;
                                         if (gpaAcrossCourses[1] < 3.0) count++;
                                         if (gpaAcrossCourses[3] < 3.0) count++;
                                         if (count >= 2) extracheck = false;
                                         break;
                                     case "Mathematics Major":
-                                        count = 0;
                                         if (gpaAcrossCourses[0] < 3.0 && gpaAcrossCourses[1]
                                                 < 3.0 && gpaAcrossCourses[3] < 3.0) extracheck = false;
                                         break;
                                     default: extracheck = true;
                                 }
 
-                                if (avgGPA >= thresholds[position] && extracheck == true){
+                                if (avgGPA >= thresholds[position] && extracheck){
                                     postSuccess.setVisibility(View.VISIBLE);
                                     KonfettiView konfettiView = root.findViewById(R.id.konfettiView);
                                     EmitterConfig emitterConfig = new Emitter(100L, TimeUnit.MILLISECONDS).max(100);
