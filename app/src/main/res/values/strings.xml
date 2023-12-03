@@ -70,7 +70,7 @@
     <string name="create_announcements">Create Announcements</string>
     <string name="events">Events</string>
     <string name="schedule_event_name_text">Event Name</string>
-    <string name="schedule_event_date_text">Date</string>
+    <string name="schedule_event_date_text">Select Date:</string>
     <string name="schedule_event_description_text">Description</string>
     <string name="schedule_event_location_text">Location</string>
     <string name="schedule_event_partici_limit_text">Participation Limit</string>
