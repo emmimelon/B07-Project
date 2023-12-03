@@ -39,6 +39,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ComplaintsFragment extends Fragment implements StudentComplaintViewInterface{
@@ -84,6 +85,10 @@ public class ComplaintsFragment extends Fragment implements StudentComplaintView
                 if (inputTitle.equals("") || inputDescription.equals("")){
                     Toast.makeText(getActivity(), "Please fill in your complaint details", Toast.LENGTH_SHORT).show();
                 }
+                else if (inputTitle.contains(".") || inputTitle.contains("#") || inputTitle.contains("$") ||
+                        inputTitle.contains("[") || inputTitle.contains("]")){
+                    Toast.makeText(getActivity(), "Do not use these character in your title: .#$[]", Toast.LENGTH_SHORT).show();
+                }
                 else {
                     ref = firebaseDatabase.getReference("Complaints").child(id).child(inputTitle);
                     ref.addValueEventListener(new ValueEventListener() {
@@ -95,7 +100,7 @@ public class ComplaintsFragment extends Fragment implements StudentComplaintView
                                 Toast.makeText(getActivity(), "Submitted Complaint!", Toast.LENGTH_SHORT).show();
                             }
                             else if (justAdded == false){
-                                Toast.makeText(getActivity(), "You already made an unresolved complaint with this title!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "You already hava a complaint with this title!", Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -122,6 +127,8 @@ public class ComplaintsFragment extends Fragment implements StudentComplaintView
                                     title.child("Date").getValue().toString(), R.drawable.ic_complaint_black);
                             if (!myComplaints.contains(c)) {
                                 myComplaints.add(c);
+                                Collections.sort(myComplaints);
+                                Collections.reverse(myComplaints);
                                 pastComplaints.getAdapter().notifyItemInserted(0);
                             }
                         }

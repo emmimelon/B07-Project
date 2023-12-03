@@ -37,26 +37,35 @@
 
         <EditText
             android:id="@+id/editTextComplaintTitle"
-            android:layout_width="@dimen/_280sdp"
+            android:background="@color/gray"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginTop="12dp"
             android:ems="10"
             android:hint="Please enter a title for your complaint"
             android:inputType="text"
             android:textSize="20sp"
+            android:textColor="@color/darkbg"
+            android:textColorHint="@color/darkbg"
             android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_complaint_description" />
 
         <EditText
             android:id="@+id/editTextComplaintDescription"
-            android:layout_width="@dimen/_280sdp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_100sdp"
             android:ems="10"
             android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             android:gravity="start|top"
+            android:textColor="@color/darkbg"
             android:hint="Please enter a description of your complaint"
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/darkbg"
+            android:background="@color/gray"
             android:inputType="textMultiLine"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@+id/editTextComplaintTitle" />

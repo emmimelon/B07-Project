@@ -36,7 +36,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="318dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:orientation="vertical"
         android:paddingLeft="48dp"
@@ -65,6 +65,7 @@
             android:background="@color/uoftGray"
             android:ems="10"
             android:inputType="text"
+            android:textColor="@color/darkbg"
             app:layout_constraintTop_toBottomOf="@id/name" />
 
         <TextView
@@ -86,6 +87,7 @@
             android:background="@color/uoftGray"
             android:ems="10"
             android:inputType="text"
+            android:textColor="@color/darkbg"
             app:layout_constraintTop_toBottomOf="@id/uoftemail" />
 
         <TextView
@@ -107,6 +109,7 @@
             android:background="@color/uoftGray"
             android:ems="10"
             android:inputType="textPassword"
+            android:textColor="@color/darkbg"
             app:layout_constraintTop_toBottomOf="@id/pw" />
 
         <RadioGroup
