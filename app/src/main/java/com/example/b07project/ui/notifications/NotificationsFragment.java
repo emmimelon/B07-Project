@@ -53,7 +53,6 @@ public class NotificationsFragment extends Fragment implements NotificationsView
         return view;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         recyclerView = getActivity().findViewById(R.id.recycler_view_notifications);

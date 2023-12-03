@@ -41,4 +41,14 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintViewHolder> 
     public int getItemCount() {
         return complaints.size();
     }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
 }
