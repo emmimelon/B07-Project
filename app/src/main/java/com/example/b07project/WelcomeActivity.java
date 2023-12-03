@@ -1,24 +1,16 @@
 package com.example.b07project;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.b07project.databinding.ActivityMainBinding;
 import com.example.b07project.databinding.ActivityWelcomeBinding;
 import com.example.b07project.login.LoginView;
 import com.example.b07project.signup.SignUpFragment;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class WelcomeActivity extends AppCompatActivity {
     private ActivityWelcomeBinding binding;

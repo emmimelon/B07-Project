@@ -5,8 +5,6 @@ import android.os.Build;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.example.b07project.ui.notifications.Notification;
-
 public class Complaint implements Comparable<Complaint>{
     String name;
     String title;

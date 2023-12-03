@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.b07project.R;
 import com.example.b07project.objects.Complaint;
-import com.example.b07project.ui.complaints.admin.ComplaintViewHolder;
-import com.example.b07project.ui.complaints.admin.ComplaintViewInterface;
 
 import java.util.List;
 

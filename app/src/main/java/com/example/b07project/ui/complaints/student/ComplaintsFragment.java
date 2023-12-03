@@ -1,6 +1,5 @@
 package com.example.b07project.ui.complaints.student;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,28 +14,19 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.b07project.R;
 import com.example.b07project.databinding.FragmentComplaintsBinding;
 import com.example.b07project.objects.Complaint;
-import com.example.b07project.objects.User;
-import com.example.b07project.ui.complaints.admin.ComplaintAdapter;
-import com.example.b07project.ui.complaints.admin.DetailedComplaintFragment;
-import com.google.android.gms.tasks.OnCompleteListener;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;

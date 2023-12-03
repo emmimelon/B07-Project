@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.b07project.R;
-import com.example.b07project.ui.announcements.view.DetailedAnnouncementsFragment;
 import com.example.b07project.ui.announcements.view.FormatDate;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

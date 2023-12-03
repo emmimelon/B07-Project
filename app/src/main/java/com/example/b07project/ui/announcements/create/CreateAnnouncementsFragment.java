@@ -3,7 +3,6 @@ package com.example.b07project.ui.announcements.create;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
